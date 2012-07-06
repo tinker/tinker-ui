@@ -1,0 +1,12 @@
+[submodule "vendor/mootools-core"]
+	path = vendor/mootools-core
+	url = https://github.com/mootools/mootools-core.git
+[submodule "vendor/normalize.css"]
+	path = vendor/normalize.css
+	url = https://github.com/necolas/normalize.css.git
+[submodule "vendor/slab"]
+	path = vendor/slab
+	url = https://github.com/keeto/slab
+[submodule "vendor/slab-loader"]
+	path = vendor/slab-loader
+	url = https://github.com/chielkunkels/slab-loader

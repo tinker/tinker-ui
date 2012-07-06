@@ -18,11 +18,11 @@ var init = function(){
 	} else {
 		require('./client');
 	}
-	events.publish('layout.init');
+	events.emit('layout.init');
 };
 
 // events
-events.subscribe('init', init);
+events.on('init', init);
 
 // export
 module.exports = layout;

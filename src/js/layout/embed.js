@@ -13,7 +13,7 @@ var build = function(){
 };
 
 // events
-events.subscribe('layout.init', build);
+events.on('layout.init', build);
 
 // export
 module.exports = layout;

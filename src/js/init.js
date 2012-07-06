@@ -7,15 +7,15 @@ var events = require('./events/model'),
 
 require('./layout/init');
 
-window.Tinker = {
-	/**
-	 * Merge passed config and init the app
-	 * @param {Object} cfg Config object
-	 */
-	init: function(cfg) {
-		cfg = cfg || {};
-		config.merge(cfg);
-		events.publish('init');
-	}
-};
+// expose the global object
+window.Tinker = {};
 
+/**
+ * Merge passed config and init the app
+ * @param {Object} cfg Config object
+ */
+window.Tinker.init = function(cfg) {
+	cfg = cfg || {};
+	config.merge(cfg);
+	events.emit('init');
+};
