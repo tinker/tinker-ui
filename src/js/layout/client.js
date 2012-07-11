@@ -125,6 +125,14 @@ var cellCoords = function(spec){
 };
 
 /**
+ * Handle window resizes
+ */
+var resize = function(){
+	recalc();
+	reflow();
+};
+
+/**
  * Add a chunk of html or an element node to a region
  */
 layout.addToRegion = function(){
@@ -146,6 +154,7 @@ layout.activate = function(index){
 
 // events
 events.on('layout.init', build);
+window.addEvent('resize', resize);
 
 // export
 module.exports = layout;
