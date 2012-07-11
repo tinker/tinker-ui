@@ -1,0 +1,15 @@
+{slab layout}
+<form method="post" action="#sandbox" target="sandbox" class="wrapper" id="wrapper">
+	<header>
+		<section class="rgn rgn-tl"></section>
+		<section class="rgn rgn-tc"></section>
+		<section class="rgn rgn-tr"></section>
+	</header>
+	<section class="body" id="body"></section>
+	<footer>
+		<section class="rgn rgn-bl"></section>
+		<section class="rgn rgn-bc"></section>
+		<section class="rgn rgn-br"></section>
+	</footer>
+</form>
+{endslab}
