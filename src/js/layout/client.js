@@ -10,7 +10,7 @@ var events = require('./../events/model'),
 var layout = {};
 
 // private
-var regions = [], curLayout = null, layoutPicker, body, cells,
+var regions = [], curLayout = null, layoutPicker, body, cells, init = true,
 	widths = [], heights = [];
 
 // builds up the base layout
@@ -25,14 +25,18 @@ var build = function(){
 	];
 	regions = $$('.rgn');
 
-	//
+	var els = $$(cells.map(function(cell){
+		return cell.getOuter();
+	})).set('morph', {duration: 150});
+
+	buildLayoutPicker();
+
 	if (!config.layouts.length) {
 		console.log('No layouts found!');
 	}
 
 	layout.activate(0);
-
-	buildLayoutPicker();
+	init = false;
 };
 
 /**
@@ -82,16 +86,21 @@ var recalc = function(){
  * Reflow the layout
  */
 var reflow = function(){
-	var i = 0, c, coords;
+	var i = 0, c, coords, styles;
 	for (; i < config.layouts[curLayout].cells.length; i++){
 		c = config.layouts[curLayout].cells[i];
 		coords = cellCoords(c);
-		cells[i].getOuter().setStyles({
+		styles = {
 			top: coords.y1,
 			left: coords.x1,
 			width: coords.x2 - coords.x1,
 			height: coords.y2 - coords.y1
-		});
+		};
+		if (init) {
+			cells[i].getOuter().setStyles(styles);
+		} else {
+			cells[i].getOuter().morph(styles);
+		}
 	}
 };
 
