@@ -2,7 +2,7 @@
 'use strict';
 
 // exposed
-var events = {};
+var event = {};
 
 // private
 var ev = new Events();
@@ -13,7 +13,7 @@ var ev = new Events();
  * @param {Array} args Passed to subscribers
  * @param {Number} delay delay in ms
  */
-events.emit = function(type, args, delay){
+event.emit = function(type, args, delay){
 	ev.fireEvent(type, args, delay);
 };
 
@@ -22,9 +22,9 @@ events.emit = function(type, args, delay){
  * @param {String} type
  * @param {Function} fn
  */
-events.on = function(type, fn, internal){
+event.on = function(type, fn, internal){
 	ev.addEvent(type, fn, internal);
 };
 
-module.exports = events;
+module.exports = event;
 

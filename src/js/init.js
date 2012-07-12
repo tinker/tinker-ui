@@ -2,7 +2,7 @@
 'use strict';
 
 // required modules
-var events = require('./events/model'),
+var event = require('./event/model'),
 	config = require('./config/model');
 
 require('./layout/init');
@@ -17,5 +17,5 @@ window.Tinker = {};
 window.Tinker.init = function(cfg) {
 	cfg = cfg || {};
 	config.merge(cfg);
-	events.emit('init');
+	event.emit('init');
 };

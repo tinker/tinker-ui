@@ -2,7 +2,7 @@
 'use strict';
 
 // required modules
-var events = require('./../events/model'),
+var event = require('./../event/model'),
 	config = require('./../config/model');
 
 // exposed
@@ -18,11 +18,11 @@ var init = function(){
 	} else {
 		require('./client');
 	}
-	events.emit('layout.init');
+	event.emit('layout.init');
 };
 
 // events
-events.on('init', init);
+event.on('init', init);
 
 // export
 module.exports = layout;

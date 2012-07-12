@@ -2,7 +2,7 @@
 'use strict';
 
 // required modules
-var events = require('./../events/model'),
+var event = require('./../event/model'),
 	config = require('./../config/model'),
 	Cell = require('./../cell/view');
 
@@ -162,7 +162,7 @@ layout.activate = function(index){
 };
 
 // events
-events.on('layout.init', build);
+event.on('layout.init', build);
 window.addEvent('resize', resize);
 
 // export
