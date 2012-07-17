@@ -10,3 +10,6 @@
 [submodule "vendor/slab-loader"]
 	path = vendor/slab-loader
 	url = https://github.com/chielkunkels/slab-loader
+[submodule "vendor/CodeMirror2"]
+	path = vendor/CodeMirror2
+	url = https://github.com/marijnh/CodeMirror2
