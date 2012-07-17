@@ -80,7 +80,17 @@ during development to make it watch for changes and auto-compile.
 
 #### Stylus
 
-Coming soon.
+To compile the stylus files to css, you currently have to be in the directory
+where the files are located, otherwise import statements will break. I have an
+outstanding [issue][stylus_issue] with the developers, so I hope this will get
+fixed. That will make it easier to work it into a build script. For now, you can
+`cd` into the directory and execute something like this:
+
+```
+$ stylus -c < tinker.styl > ../../../public/tinker.css
+```
+
+Again, this assumes the above directory structure.
 
 #### Slab
 
@@ -90,7 +100,11 @@ production instead. I wrote a small utility script called [slab
 loader][slab_loader] which allows slab to be used more easily during
 development, by using synchronous XHRs and compiling on-the-fly.
 
-More information on how to use this will be coming soon.
+When it comes to compiling for production, the easiest thing to do, is
+concatenate all the slab files in `./src/tpl` into one string, and run that
+through the slab cli compiler. That way we'll get a single object of template
+functions, which can then be concatenated with the rest of the JS files, and
+registered with `slab.register` (provided by slab-loader).
 
 [tinker]: https://github.com/chielkunkels/tinker
 [mootools]: http://mootools.net/
@@ -98,3 +112,5 @@ More information on how to use this will be coming soon.
 [node]: http://nodejs.org/#download
 [slab]: https://github.com/keeto/slab
 [slab_loader]: https://github.com/chielkunkels/slab-loader
+[stylus_issue]: https://github.com/LearnBoost/stylus/issues/757
+
