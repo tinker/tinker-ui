@@ -10,7 +10,7 @@ var event = require('./../event/model'),
 var layout = {};
 
 // private
-var regions = [], curLayout = null, layoutPicker, body, cells, init = true,
+var regions = [], curLayout = null, layoutPicker, body, cells,
 	widths = [], heights = [];
 
 // builds up the base layout
@@ -35,8 +35,8 @@ var build = function(){
 		console.log('No layouts found!');
 	}
 
-	layout.activate(0);
-	init = false;
+	layout.activate(0, false);
+	event.emit('layout.build');
 };
 
 /**
@@ -50,6 +50,7 @@ var buildLayoutPicker = function(){
  * Recalculate col/row sizes
  */
 var recalc = function(){
+
 	var l = config.layouts[curLayout], i = 0, percent,
 		bSize = body.getSize(), opWidth = bSize.x/100, opHeight = bSize.y/100,
 		width, height, consumed = 0;
@@ -85,7 +86,8 @@ var recalc = function(){
 /**
  * Reflow the layout
  */
-var reflow = function(){
+var reflow = function(animate){
+	animate = animate === false ? false : true;
 	var i = 0, c, coords, styles;
 	for (; i < config.layouts[curLayout].cells.length; i++){
 		c = config.layouts[curLayout].cells[i];
@@ -96,10 +98,10 @@ var reflow = function(){
 			width: coords.x2 - coords.x1,
 			height: coords.y2 - coords.y1
 		};
-		if (init) {
-			cells[i].getOuter().setStyles(styles);
-		} else {
+		if (animate) {
 			cells[i].getOuter().morph(styles);
+		} else {
+			cells[i].getOuter().setStyles(styles);
 		}
 	}
 };
@@ -138,7 +140,7 @@ var cellCoords = function(spec){
  */
 var resize = function(){
 	recalc();
-	reflow();
+	reflow(false);
 };
 
 /**
@@ -151,14 +153,14 @@ layout.addToRegion = function(){
 /**
  * Activate a layout by index
  */
-layout.activate = function(index){
+layout.activate = function(index, animate){
 	if (!config.layouts[index]) {
 		return;
 	}
 
 	curLayout = index;
 	recalc();
-	reflow();
+	reflow(animate);
 };
 
 // events
