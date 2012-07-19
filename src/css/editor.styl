@@ -6,20 +6,46 @@
 	bottom: 0
 	left: 0
 	background: #fff
-	border: 1px solid #aaa
-	font: 12px 'bitstream vera sans mono', monospace
+	font: 14px 'bitstream vera sans mono', monospace
+
+	&.has-focus {
+		background: #fff
+	}
+
+	textarea {
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		border: 0
+		font: inherit
+		resize: none
+		&:focus {
+			outline: 0
+		}
+	}
+
+	.active-line {
+		background: #f5f5f5;
+	}
 }
-.editor textarea {
-	position: absolute
-	top: 0
-	right: 0
-	bottom: 0
-	left: 0
-	border: 0
-	font: inherit
-	resize: none
+
+.CodeMirror {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	font: inherit;
 }
-.editor textarea:focus {
-	outline: 0
+.CodeMirror-scroll {
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: auto;
 }
 

@@ -4,7 +4,10 @@
 // required modules
 var event = require('./../event/model'),
 	config = require('./../config/model'),
-	Cell = require('./../cell/view');
+	Cell = require('./../cell/view'),
+	markupEditor = require('./../editor/markup.js'),
+	styleEditor = require('./../editor/style.js'),
+	behaviourEditor = require('./../editor/behaviour.js');
 
 // exposed
 var layout = {};
@@ -34,6 +37,10 @@ var build = function(){
 	if (!config.layouts.length) {
 		console.log('No layouts found!');
 	}
+
+	markupEditor.init(cells[0].getInner());
+	styleEditor.init(cells[1].getInner());
+	behaviourEditor.init(cells[2].getInner());
 
 	layout.activate(0, false);
 	event.emit('layout.build');
