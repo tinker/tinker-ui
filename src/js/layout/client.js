@@ -7,7 +7,8 @@ var event = require('./../event/model'),
 	Cell = require('./../cell/view'),
 	markupEditor = require('./../editor/markup.js'),
 	styleEditor = require('./../editor/style.js'),
-	behaviourEditor = require('./../editor/behaviour.js');
+	behaviourEditor = require('./../editor/behaviour.js'),
+	result = require('./../result/base');
 
 // exposed
 var layout = {};
@@ -44,6 +45,7 @@ var build = function(){
 	markupEditor.init(cells[0].getInner());
 	styleEditor.init(cells[1].getInner());
 	behaviourEditor.init(cells[2].getInner());
+	result.init(cells[3].getInner());
 };
 
 /**
