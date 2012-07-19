@@ -2,8 +2,7 @@
 'use strict';
 
 // required modules
-var editorBase = require('./base'),
-	event = require('./../event/model');
+var editorBase = require('./base');
 
 // exposed
 var editor = Object.merge({}, editorBase, {

@@ -38,12 +38,12 @@ var build = function(){
 		console.log('No layouts found!');
 	}
 
+	layout.activate(0, false);
+	event.emit('layout.build');
+
 	markupEditor.init(cells[0].getInner());
 	styleEditor.init(cells[1].getInner());
 	behaviourEditor.init(cells[2].getInner());
-
-	layout.activate(0, false);
-	event.emit('layout.build');
 };
 
 /**
