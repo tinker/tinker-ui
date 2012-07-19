@@ -19,3 +19,4 @@ window.Tinker.init = function(cfg) {
 	config.merge(cfg);
 	event.emit('init');
 };
+
