@@ -17,7 +17,9 @@ var layout = {};
 var regions = [], curLayout = null, layoutPicker, body, cells,
 	widths = [], heights = [];
 
-// builds up the base layout
+/**
+ * Build up the base layout
+ */
 var build = function(){
 	document.body.set('html', slab.load('layout')());
 	body = $('body');
@@ -33,11 +35,12 @@ var build = function(){
 		return cell.getOuter();
 	})).set('morph', {duration: 150});
 
-	buildLayoutPicker();
-
 	if (!config.layouts.length) {
-		console.log('No layouts found!');
+		console.warn('No layouts found!');
 	}
+
+	layout.addToRegion(new Element('span.icn50.icn-logo'), 0);
+	layout.addToRegion(new Element('span.icn50.icn-info'), 3);
 
 	layout.activate(0, false);
 	event.emit('layout.build');
@@ -46,13 +49,6 @@ var build = function(){
 	styleEditor.init(cells[1].getInner());
 	behaviourEditor.init(cells[2].getInner());
 	result.init(cells[3].getInner());
-};
-
-/**
- *
- */
-var buildLayoutPicker = function(){
-	layout.addToRegion(slab.load('layoutPicker')());
 };
 
 /**
@@ -93,7 +89,8 @@ var recalc = function(){
 };
 
 /**
- * Reflow the layout
+ * Reflow the cells
+ * @param {Boolean} animate Whether the reflow should be animated
  */
 var reflow = function(animate){
 	animate = animate === false ? false : true;
@@ -117,8 +114,8 @@ var reflow = function(animate){
 
 /**
  * Calculate coords of a cell
- * @param object spec Specification of how the cell should look
- * @return object Coordinates
+ * @param {Object} spec Specification of how the cell should look
+ * @return {Object} Coordinates
  */
 var cellCoords = function(spec){
 	var i = 0, j = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
@@ -153,10 +150,20 @@ var resize = function(){
 };
 
 /**
- * Add a chunk of html or an element node to a region
+ * Add a node to a region
+ * @param {Element} el Node to add
+ * @param {Integer} index Region index to add to
  */
-layout.addToRegion = function(){
+layout.addToRegion = function(el, index){
+	if (typeOf(el) !== 'element' || typeOf(index) !== 'number') {
+		return;
+	}
+	if (index < 0 || index >= regions.length) {
+		console.warn('Invalid region index: ', index);
+		return;
+	}
 
+	el.inject(regions[index]);
 };
 
 /**
@@ -178,4 +185,7 @@ window.addEvent('resize', resize);
 
 // export
 module.exports = layout;
+
+require('./../asset/view');
+require('./../tinker/view');
 
