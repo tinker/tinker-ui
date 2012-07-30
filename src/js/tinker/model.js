@@ -65,6 +65,22 @@ var validateData = function(data, compare){
 	return valid;
 };
 
+/**
+ * Check if a given key is valid
+ */
+var isValidPath = function(key){
+	var path = key.split('.'), valid = validFormat, key;
+	while (path.length) {
+		key = path.shift();
+		if (key in valid) {
+			valid = valid[key];
+		} else {
+			return false;
+		}
+	}
+	return true;
+};
+
 var parsed = parseData(), validated;
 if (parsed) {
 	validated = validateData(parsed, validFormat);
@@ -85,6 +101,24 @@ tinker.get = function(key){
 		}
 	}
 	return data;
+};
+
+/**
+ *
+ */
+tinker.set = function(key, value){
+	if (!isValidPath(key)) {
+		return false;
+	}
+	var path = key.split('.'), data = validated, k;
+	while (path.length) {
+		k = path.shift();
+		if (!(k in data)) {
+			data[k] = path.length ? {} : value;
+		} else {
+			data = data[k];
+		}
+	}
 };
 
 /**
