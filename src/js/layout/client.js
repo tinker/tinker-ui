@@ -21,7 +21,9 @@ var regions = [], curLayout = null, layoutPicker, body, cells,
  * Build up the base layout
  */
 var build = function(){
-	document.body.set('html', slab.load('layout')());
+	$(document.body).adopt(
+		new Element('div', {html: slab.load('layout')()})
+	);
 	body = $('body');
 	cells = [
 		new Cell(body),
