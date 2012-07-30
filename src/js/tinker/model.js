@@ -57,7 +57,9 @@ var validateData = function(data, compare){
 	var valid = {};
 	Object.each(data, function(value, key){
 		if (key in compare) {
-			valid[key] = typeOf(value) === 'object' ? validateData(value, compare[key]) : value;
+			valid[key] = typeOf(value) === 'object'
+				? validateData(value, compare[key])
+				: value;
 		}
 	});
 	return valid;
