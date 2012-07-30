@@ -170,6 +170,8 @@ layout.addToRegion = function(el, index){
 
 /**
  * Activate a layout by index
+ * @param {Number} index Layout to activate
+ * @param {Bool} animate Whether the transition should be animated
  */
 layout.activate = function(index, animate){
 	if (!config.layouts[index]) {

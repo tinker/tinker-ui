@@ -20,6 +20,7 @@ var editor = {
 
 	/**
 	 * Initialise a new editor
+	 * @param {Element} wrapper The element to create the editor in
 	 */
 	init: function(wrapper){
 		this.wrapper = wrapper;
@@ -32,7 +33,7 @@ var editor = {
 	},
 
 	/**
-	 * Focus event
+	 * Focus the editor and highlight the last active line
 	 */
 	onFocus: function(){
 		this.frame.addClass('has-focus');
@@ -40,7 +41,7 @@ var editor = {
 	},
 
 	/**
-	 * Blur event
+	 * Remove focus and the active line
 	 */
 	onBlur: function(){
 		this.frame.removeClass('has-focus');

@@ -15,7 +15,9 @@ var Popover = new Class({
 	},
 
 	/**
-	 *
+	 * Create a new popover
+	 * @param {Element} body Node to get injected into the popover
+	 * @param {Object} options Options to apply
 	 */
 	initialize: function(body, options){
 		this.setOptions(options);

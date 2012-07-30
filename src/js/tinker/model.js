@@ -51,7 +51,10 @@ var parseData = function(){
 };
 
 /**
- *
+ * Validate a data structure against a valid tinker format
+ * @param {Mixed} data The data to validate
+ * @param {Mixed} compare The data to validate against
+ * @return {Mixed} The filtered/validated data
  */
 var validateData = function(data, compare){
 	var valid = {};
@@ -67,6 +70,7 @@ var validateData = function(data, compare){
 
 /**
  * Check if a given key is valid
+ * @param {String} key The path to validate
  */
 var isValidPath = function(key){
 	var path = key.split('.'), valid = validFormat, key;
@@ -88,6 +92,8 @@ if (parsed) {
 
 /**
  * Get data from the current tinker
+ * @param {String} key The key to fetch
+ * @return {Mixed} The data
  */
 tinker.get = function(key){
 	var path = key.split('.'), data = validated, key;
@@ -104,7 +110,9 @@ tinker.get = function(key){
 };
 
 /**
- *
+ * Set some new data into the tinker
+ * @param {String} key The key to set
+ * @param {Mixed} value The value to set
  */
 tinker.set = function(key, value){
 	if (!isValidPath(key)) {

@@ -4,7 +4,7 @@
 // exposed
 var result = {
 	/**
-	 *
+	 * Create a new result view
 	 */
 	init: function(wrapper){
 		this.wrapper = wrapper;
@@ -12,7 +12,7 @@ var result = {
 	},
 
 	/**
-	 *
+	 * Build it
 	 */
 	build: function(){
 		this.frame = new Element('div.result');
