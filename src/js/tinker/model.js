@@ -80,6 +80,7 @@ tinker.get = function(key){
 		if (key in data) {
 			data = data[key];
 		} else {
+			data = undefined;
 			break;
 		}
 	}
