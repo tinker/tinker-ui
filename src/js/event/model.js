@@ -11,10 +11,9 @@ var ev = new Events();
  * Emit an event
  * @param {String} type
  * @param {Array} args Passed to subscribers
- * @param {Number} delay delay in ms
  */
-event.emit = function(type, args, delay){
-	ev.fireEvent(type, args, delay);
+event.emit = function(type, args){
+	ev.fireEvent(type, args);
 };
 
 /**
@@ -22,8 +21,8 @@ event.emit = function(type, args, delay){
  * @param {String} type
  * @param {Function} fn
  */
-event.on = function(type, fn, internal){
-	ev.addEvent(type, fn, internal);
+event.on = function(type, fn){
+	ev.addEvent(type, fn);
 };
 
 module.exports = event;
