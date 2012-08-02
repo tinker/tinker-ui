@@ -13,8 +13,8 @@ var validFormat = {
 		created: ""
 	},
 	dependancies: {
-		javascripts: [""],
-		stylesheets: [""]
+		scripts: [""],
+		styles: [""]
 	},
 	code: {
 		markup: {
