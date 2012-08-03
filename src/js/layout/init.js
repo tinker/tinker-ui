@@ -16,7 +16,7 @@ var init = function(){
 	if (config.layout === 'embed') {
 		require('./embed');
 	} else {
-		require('./client');
+		require('./client.init');
 	}
 	event.emit('layout.init');
 };

@@ -190,6 +190,3 @@ window.addEvent('resize', resize);
 // export
 module.exports = layout;
 
-require('./../asset/view');
-require('./../tinker/view');
-
