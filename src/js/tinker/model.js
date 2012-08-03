@@ -12,7 +12,7 @@ var validFormat = {
 		description: "",
 		created: ""
 	},
-	dependancies: {
+	dependencies: {
 		scripts: [""],
 		styles: [""]
 	},
