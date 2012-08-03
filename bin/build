@@ -1,0 +1,63 @@
+#!/usr/bin/env sh
+# make sure we know where to dump the files
+if [ -z "$1" ] || [ ! -d "$1" ]; then
+	echo "Please specify a directory to put the built files"
+	exit 1
+fi
+
+# get tinker-ui root dir
+cd `dirname $0`"/.."
+root=`pwd`
+cd - > /dev/null
+
+# get absolute path to destination dir
+cd "$1"
+dest=`pwd`
+cd - > /dev/null
+
+# temp file
+tmp=`mktemp -t tmp`
+
+# remove temp file if it exists
+if [ -f $tmp ]; then
+	rm $tmp
+fi
+
+# build mootools
+echo "> Building mootools"
+"$root/vendor/mootools-core/build" 2> /dev/null >> $tmp
+
+# include other files
+files=(
+	"/vendor/slab-loader/src/slab.load.js"
+	"/vendor/CodeMirror2/lib/codemirror.js"
+	"/vendor/CodeMirror2/mode/xml/xml.js"
+	"/vendor/CodeMirror2/mode/css/css.js"
+	"/vendor/CodeMirror2/mode/javascript/javascript.js"
+)
+echo "> Adding third-party files"
+
+for file in ${files[@]}; do
+	echo "  - $file"
+	cat "$root$file" >> $tmp
+done
+
+# compile templates
+echo "> Compiling templates"
+"$root/bin/slab" "$root/src/tpl" >> $tmp
+
+# wrup application code
+echo "> Building application code"
+wrup -r "$root/src/js/init.js" 2> /dev/null >> $tmp
+
+# uglify
+echo "> Uglifying all the code"
+# cat $tmp > "$dest/tinker.min.js"
+cat $tmp | uglifyjs -nc > "$dest/tinker.min.js"
+
+echo "\nDone! Files written:"
+echo "- $dest/tinker.min.js"
+
+# clean up
+rm $tmp
+
