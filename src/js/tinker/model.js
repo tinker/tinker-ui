@@ -99,7 +99,7 @@ tinker.get = function(key){
 	var path = key.split('.'), data = validated, key;
 	while (path.length) {
 		key = path.shift();
-		if (key in data) {
+		if (data && key in data) {
 			data = data[key];
 		} else {
 			data = undefined;
