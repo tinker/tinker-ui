@@ -13,7 +13,7 @@ var editor = Object.merge({}, editorBase, {
 	build: function(){
 		this.frame = new Element('div.editor');
 		this.textarea = new Element('textarea', {
-			name: 'behaviour',
+			name: 'tinker[code][behaviour][body]',
 			value: tinker.get('code.behaviour.body')
 		});
 		this.frame.adopt(this.textarea).inject(this.wrapper);
