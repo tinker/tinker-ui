@@ -78,16 +78,15 @@ Basically you'll want to set `-o` to wherever your backend serves public assets
 from (in case of most ruby projects, `/public/`). You can also use the `-w` flag
 during development to make it watch for changes and auto-compile.
 
-#### Stylus
+#### LESS
 
-To compile the stylus files to css, you currently have to be in the directory
-where the files are located, otherwise import statements will break. I have an
-outstanding [issue][stylus_issue] with the developers, so I hope this will get
-fixed. That will make it easier to work it into a build script. For now, you can
-`cd` into the directory and execute something like this:
+All the css is written in less modules to allow for maximal decoupling and
+separation, to install this you need [node+npm][node]. Once you have less
+installed, go to the root folder of your project and simply the line below to
+compile the css:
 
 ```
-$ stylus -c < tinker.styl > ../../../public/tinker.css
+$ lessc -x ./ui/src/css/init.less ../../../public/tinker.css
 ```
 
 Again, this assumes the above directory structure.
@@ -112,5 +111,4 @@ registered with `slab.register` (provided by slab-loader).
 [node]: http://nodejs.org/#download
 [slab]: https://github.com/keeto/slab
 [slab_loader]: https://github.com/chielkunkels/slab-loader
-[stylus_issue]: https://github.com/LearnBoost/stylus/issues/757
 
