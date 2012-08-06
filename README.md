@@ -47,12 +47,31 @@ leave me with a working tree that looks something like this:
 I'll assume this directory structure when running commands in the rest of this
 readme.
 
-### Dependancies
+### Compiling
 
-Tinker UI has a few dependancies. Some of these are node modules, others are simply
-included in the project, through git submodules. You'll want to run `git
-submodule update --init --recursive` to get all submodules and their respective
-dependancies.
+To compile all the css, javascript and templates, you will have to have all
+dependencies installed (covered in the next section). Once you have done that
+you can simply issue:
+
+```
+$ ./ui/bin/build public
+```
+
+Where the first argument is the directory where you want the compiled files to
+be placed.
+
+### Dependencies
+
+Tinker UI has a few dependencies, other than of course being part of your
+project. A lot of these are actually only needed during development. They come
+either as [npm][node] modules, or are simply included as submodules in the
+project, in the `vendor` directory. Depending on your deployment strategy you
+won't even have to fetch the Tinker UI submodule on your production machine, if
+you deploy the precompiled files.
+
+During development and to compile you will need to fetch Tinker UI + it's
+submodules though, which you can do by running `git submodule update --init
+--recursive`, this gets everything you need to compile and develop.
 
 #### MooTools
 

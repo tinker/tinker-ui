@@ -7,7 +7,8 @@ var fs = require('fs'),
 	slab = require('./../vendor/slab/src/slab.js').slab,
 	wrup = require('wrapup')(),
 	jsp = require('uglify-js').parser,
-	pro = require('uglify-js').uglify
+	pro = require('uglify-js').uglify,
+	less = require('less')
 
 var args = process.argv.splice(1);
 if (!args[1] || !fs.statSync(args[1]).isDirectory()) {
@@ -15,17 +16,19 @@ if (!args[1] || !fs.statSync(args[1]).isDirectory()) {
 	process.exit(1)
 }
 
-var root = path.normalize(path.dirname(args[0])+'/..'),
+var cwd = process.cwd(),
+	root = path.normalize(path.dirname(args[0])+'/..'),
 	dest = path.resolve(args[1]),
-	js = ''
+	js = '', css = ''
 
+console.log('Compiling Tinker JS')
 console.log('> Building mootools')
 cp.exec(root+'/vendor/mootools-core/build', function(error, stdout, stderr){
 	js += stdout
-	event.emit('mootools.build')
+	event.emit('js.mootools')
 })
 
-event.once('mootools.build', function(){
+event.once('js.mootools', function(){
 	console.log('> Adding third-party files')
 	var files = [
 			'/vendor/slab-loader/src/slab.load.js',
@@ -36,13 +39,13 @@ event.once('mootools.build', function(){
 		], file
 	while (files.length) {
 		file = files.shift()
-		console.log('  - '+file)
+		console.log('  - .'+(root+file).replace(cwd, ''))
 		js += fs.readFileSync(root+file, 'utf8')
 	}
-	event.emit('files.build')
+	event.emit('js.files')
 })
 
-event.once('files.build', function(){
+event.once('js.files', function(){
 	console.log('> Compiling templates')
 	var files = fs.readdirSync(root+'/src/tpl'), tpl = '', out = ''
 	while (files.length) {
@@ -54,20 +57,59 @@ event.once('files.build', function(){
 		'slab.register(templates);'+"\n"+
 		'})();'
 	js += out
-	event.emit('tpl.build')
+	event.emit('js.templates')
 })
 
-event.once('tpl.build', function(){
+event.once('js.templates', function(){
 	console.log('> Wrapping up application code')
 	js += wrup.require(root+'/src/js/init.js').up();
-	event.emit('wrup.build')
+	event.emit('js.wrup')
 })
 
-event.once('wrup.build', function(){
+event.once('js.wrup', function(){
 	console.log('> Uglifying source')
 	var ast = jsp.parse(js)
 	ast = pro.ast_mangle(ast)
 	ast = pro.ast_squeeze(ast)
-	fs.writeFileSync(dest+'/tinker.min.js', pro.gen_code(ast), 'utf8')
+	js = pro.gen_code(ast)
+	event.emit('js.minify')
+})
+
+event.once('js.minify', function(){
+	console.log('=== Writing file: .'+(dest+'/tinker.min.js').replace(cwd, ''))
+	fs.writeFileSync(dest+'/tinker.min.js', js, 'utf8')
+	event.emit('js.done')
+})
+
+event.once('js.done', function(){
+	console.log("\n"+'Compiling Tinker CSS')
+	console.log('> Adding third-party files')
+	var files = [
+			'/vendor/normalize.css/normalize.css',
+			'/vendor/CodeMirror2/lib/codemirror.css'
+		], file
+	while (files.length) {
+		file = files.shift()
+		console.log('  - .'+(root+file).replace(cwd, ''))
+		css += fs.readFileSync(root+file, 'utf8')
+	}
+	event.emit('css.files')
+})
+
+event.once('css.files', function(){
+	console.log('> Parsing less files')
+	var parser = new less.Parser({paths: [root+'/src/css']})
+	var lessCss = fs.readFileSync(root+'/src/css/init.less', 'utf8')
+	parser.parse(lessCss, function(err, tree){
+		css += tree.toCSS({compress: true})
+		event.emit('css.less')
+	})
+})
+
+event.once('css.less', function(){
+	console.log('=== Writing file: .'+(dest+'/tinker.css.js').replace(cwd, ''))
+	fs.writeFileSync(dest+'/tinker.min.css', css, 'utf8')
+
+	event.emit('css.done')
 })
 
