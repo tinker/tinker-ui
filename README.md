@@ -86,7 +86,7 @@ installed, go to the root folder of your project and simply the line below to
 compile the css:
 
 ```
-$ lessc -x ./ui/src/css/init.less ../../../public/tinker.css
+$ lessc -x ./ui/src/css/init.less ./public/tinker.css
 ```
 
 Again, this assumes the above directory structure.
