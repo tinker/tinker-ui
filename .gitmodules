@@ -6,10 +6,10 @@
 	url = https://github.com/necolas/normalize.css.git
 [submodule "vendor/slab"]
 	path = vendor/slab
-	url = https://github.com/keeto/slab
+	url = https://github.com/keeto/slab.git
 [submodule "vendor/slab-loader"]
 	path = vendor/slab-loader
-	url = https://github.com/chielkunkels/slab-loader
+	url = https://github.com/chielkunkels/slab-loader.git
 [submodule "vendor/CodeMirror"]
 	path = vendor/CodeMirror
 	url = https://github.com/marijnh/CodeMirror.git
