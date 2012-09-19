@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "devDependencies": {
     "uglify-js": "~1.3.3",
-    "wrapup": "~0.9.10"
+    "wrapup": "~0.9.10",
+    "less": "*"
   },
   "repository": {
     "type": "git",
