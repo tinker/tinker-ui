@@ -32,10 +32,10 @@ event.once('js.mootools', function(){
 	console.log('> Adding third-party files')
 	var files = [
 			'/vendor/slab-loader/src/slab.load.js',
-			'/vendor/CodeMirror2/lib/codemirror.js',
-			'/vendor/CodeMirror2/mode/xml/xml.js',
-			'/vendor/CodeMirror2/mode/css/css.js',
-			'/vendor/CodeMirror2/mode/javascript/javascript.js'
+			'/vendor/CodeMirror/lib/codemirror.js',
+			'/vendor/CodeMirror/mode/xml/xml.js',
+			'/vendor/CodeMirror/mode/css/css.js',
+			'/vendor/CodeMirror/mode/javascript/javascript.js'
 		], file
 	while (files.length) {
 		file = files.shift()
@@ -86,7 +86,7 @@ event.once('js.done', function(){
 	console.log('> Adding third-party files')
 	var files = [
 			'/vendor/normalize.css/normalize.css',
-			'/vendor/CodeMirror2/lib/codemirror.css'
+			'/vendor/CodeMirror/lib/codemirror.css'
 		], file
 	while (files.length) {
 		file = files.shift()
