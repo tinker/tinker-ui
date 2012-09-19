@@ -1,4 +1,5 @@
 // Chiel Kunkels (@chielkunkels)
+'use strict';
 
 // required modules
 var event = require('./../event/model'),

@@ -1,4 +1,5 @@
 // Chiel Kunkels (@chielkunkels)
+'use strict';
 
 var backdrop;
 

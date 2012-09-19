@@ -1,4 +1,5 @@
 // Chiel Kunkels (@chielkunkels)
+'use strict';
 
 // exposed
 var tinker = {};
@@ -60,9 +61,9 @@ var validateData = function(data, compare){
 	var valid = {};
 	Object.each(data, function(value, key){
 		if (key in compare) {
-			valid[key] = typeOf(value) === 'object'
-				? validateData(value, compare[key])
-				: value;
+			valid[key] = typeOf(value) === 'object' ?
+				validateData(value, compare[key]) :
+				value;
 		}
 	});
 	return valid;
@@ -73,7 +74,7 @@ var validateData = function(data, compare){
  * @param {String} key The path to validate
  */
 var isValidPath = function(key){
-	var path = key.split('.'), valid = validFormat, key;
+	var path = key.split('.'), valid = validFormat;
 	while (path.length) {
 		key = path.shift();
 		if (key in valid) {
@@ -96,7 +97,7 @@ if (parsed) {
  * @return {Mixed} The data
  */
 tinker.get = function(key){
-	var path = key.split('.'), data = validated, key;
+	var path = key.split('.'), data = validated;
 	while (path.length) {
 		key = path.shift();
 		if (data && key in data) {

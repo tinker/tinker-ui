@@ -14,7 +14,7 @@ var event = require('./../event/model'),
 var layout = {};
 
 // private
-var regions = [], curLayout = null, layoutPicker, body, cells,
+var regions = [], curLayout = null, body, cells,
 	widths = [], heights = [];
 
 /**
@@ -33,7 +33,7 @@ var build = function(){
 	];
 	regions = $$('.rgn');
 
-	var els = $$(cells.map(function(cell){
+	$$(cells.map(function(cell){
 		return cell.getOuter();
 	})).set('morph', {duration: 150});
 
@@ -77,7 +77,7 @@ var recalc = function(){
 	}
 
 	i = 0;
-	consumed = 0
+	consumed = 0;
 	for (; i < l.rows.length; i++){
 		if (l.rows[i+1]) {
 			percent = l.rows[i+1] - l.rows[i];
@@ -140,7 +140,7 @@ var cellCoords = function(spec){
 	}
 	y2 += y1;
 
-	return {x1: x1, y1: y1, x2: x2, y2: y2}
+	return {x1: x1, y1: y1, x2: x2, y2: y2};
 };
 
 /**
