@@ -13,3 +13,6 @@
 [submodule "vendor/CodeMirror"]
 	path = vendor/CodeMirror
 	url = https://github.com/marijnh/CodeMirror.git
+[submodule "vendor/mootools-base64"]
+	path = vendor/mootools-base64
+	url = https://github.com/rpflorence/mootools-base64.git

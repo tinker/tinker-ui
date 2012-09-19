@@ -31,6 +31,7 @@ cp.exec(root+'/vendor/mootools-core/build', function(error, stdout, stderr){
 event.once('js.mootools', function(){
 	console.log('> Adding third-party files')
 	var files = [
+			'/vendor/mootools-base64/Source/Base64.js',
 			'/vendor/slab-loader/src/slab.load.js',
 			'/vendor/CodeMirror/lib/codemirror.js',
 			'/vendor/CodeMirror/mode/xml/xml.js',
