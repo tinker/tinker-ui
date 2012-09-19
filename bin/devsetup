@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+	path = require('path'),
+	cp = require('child_process'),
+	event = new (require('events').EventEmitter)(),
+	wrup = require('wrapup')(),
+	less = require('less')
+
+var args = process.argv.splice(1);
+if (!args[1] || !fs.statSync(args[1]).isDirectory()) {
+	console.log('Please specify a directory to put the built files')
+	process.exit(1)
+}
+
+var cwd = process.cwd(),
+	root = path.normalize(path.dirname(args[0])+'/..'),
+	dest = path.resolve(args[1]);
+
+console.log('> Building mootools')
+cp.exec(root+'/vendor/mootools-core/build', function(error, stdout, stderr){
+	fs.writeFileSync(dest+'/mootools.js', stdout, 'utf8')
+	event.emit('js.mootools')
+})
+
+event.once('js.mootools', function(){
+	console.log('> Symlinking third-party files')
+	var files = {
+		'mootools-base64.js': '/mootools-base64/Source/Base64.js',
+		'codemirror.js': '/CodeMirror/lib/codemirror.js',
+		'mode-xml.js': '/CodeMirror/mode/xml/xml.js',
+		'mode-css.js': '/CodeMirror/mode/css/css.js',
+		'mode-javascript.js': '/CodeMirror/mode/javascript/javascript.js',
+		'codemirror.css': '/CodeMirror/lib/codemirror.css',
+		'slab.js': '/slab/src/slab.js',
+		'slab.load.js': '/slab-loader/src/slab.load.js',
+		'normalize.css': '/normalize.css/normalize.css'
+	}
+
+	for (file in files) {
+		console.log('  - .'+(dest+'/'+file).replace(cwd, '')+' -> .'+(root+'/vendor'+files[file]).replace(cwd, ''))
+		if (!fs.existsSync(dest+'/'+file)) {
+			fs.symlinkSync(root+'/vendor'+files[file], dest+'/'+file)
+		}
+	}
+	event.emit('js.files')
+})
+
+event.once('js.files', function(){
+	console.log('> Wrapping up application code')
+	var wrupped = wrup.require(root+'/src/js/init.js').up();
+	fs.writeFileSync(dest+'/tinker.js', wrupped, 'utf8')
+	event.emit('js.wrup')
+})
+
+event.once('js.wrup', function(){
+	console.log('> Parsing less files')
+	var parser = new less.Parser({paths: [root+'/src/css']}),
+		lessCss = fs.readFileSync(root+'/src/css/init.less', 'utf8'),
+		css
+	parser.parse(lessCss, function(err, tree){
+		css = tree.toCSS()
+		fs.writeFileSync(dest+'/tinker.css', css, 'utf8')
+		event.emit('css.done')
+	})
+
+})
+
+event.once('css.done', function(){
+	console.log('> Symlinking templates')
+	if (!fs.existsSync(dest+'/tpl')) {
+		fs.symlinkSync(root+'/src/tpl', dest+'/tpl')
+	}
+})
+

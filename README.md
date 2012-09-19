@@ -47,7 +47,14 @@ leave me with a working tree that looks something like this:
 I'll assume this directory structure when running commands in the rest of this
 readme.
 
-### Compiling
+### Setting up
+
+To get started with developing, the easiest thing is to use the `./bin/devsetup`
+script. It takes a single argument which is the public directory of your app. In
+case of a ruby app with a structure similar to the above, we might exercute a
+command like `./ui/bin/devsetup public`.
+
+### Compiling for production
 
 To compile all the css, javascript and templates, you will have to have all
 dependencies installed (covered in the next section). Once you have done that
@@ -79,7 +86,7 @@ Tinker UI is written on top of the MooTools javascript framework. You have two
 options when it comes to obtaining it.
 
 1. You can build it based on the included submodule (requires php) by running:
-	`./ui/src/vendor/mootools-core/build > ./public/mootools.js`
+	`./ui/vendor/mootools-core/build > ./public/mootools.js`
 2. You can simply download it from [the website][mootools]
 
 #### Wrapup
