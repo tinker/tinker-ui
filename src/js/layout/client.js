@@ -10,9 +10,6 @@ var event = require('./../event/model'),
 	behaviourEditor = require('./../editor/behaviour.js'),
 	result = require('./../result/base');
 
-// exposed
-var layout = {};
-
 // private
 var regions = [], curLayout = null, body, cells,
 	widths = [], heights = [];
@@ -20,7 +17,7 @@ var regions = [], curLayout = null, body, cells,
 /**
  * Build up the base layout
  */
-var build = function(){
+function build(){
 	$(document.body).adopt(
 		new Element('div', {html: slab.load('layout')()})
 	);
@@ -41,23 +38,22 @@ var build = function(){
 		console.warn('No layouts found!');
 	}
 
-	layout.addToRegion(new Element('span.icn50.icn-logo'), 0);
-	layout.addToRegion(new Element('span.icn50.icn-info'), 3);
+	addToRegion(new Element('span.icn50.icn-logo'), 0);
+	addToRegion(new Element('span.icn50.icn-info'), 3);
 
-	layout.activate(0, false);
+	activate(0, false);
 	event.emit('layout.build');
 
 	markupEditor.init(cells[0].getInner());
 	styleEditor.init(cells[1].getInner());
 	behaviourEditor.init(cells[2].getInner());
 	result.init(cells[3].getInner());
-};
+}
 
 /**
  * Recalculate col/row sizes
  */
-var recalc = function(){
-
+function recalc(){
 	var l = config.layouts[curLayout], i = 0, percent,
 		bSize = body.getSize(), opWidth = bSize.x/100, opHeight = bSize.y/100,
 		width, height, consumed = 0;
@@ -88,13 +84,13 @@ var recalc = function(){
 			heights.push(bSize.y - consumed);
 		}
 	}
-};
+}
 
 /**
  * Reflow the cells
  * @param {Boolean} animate Whether the reflow should be animated
  */
-var reflow = function(animate){
+function reflow(animate){
 	animate = animate === false ? false : true;
 	var i = 0, c, coords, styles;
 	for (; i < config.layouts[curLayout].cells.length; i++){
@@ -112,14 +108,14 @@ var reflow = function(animate){
 			cells[i].getOuter().setStyles(styles);
 		}
 	}
-};
+}
 
 /**
  * Calculate coords of a cell
  * @param {Object} spec Specification of how the cell should look
  * @return {Object} Coordinates
  */
-var cellCoords = function(spec){
+function cellCoords(spec){
 	var i = 0, j = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 
 	for (; i < spec[0]; i++){
@@ -141,22 +137,22 @@ var cellCoords = function(spec){
 	y2 += y1;
 
 	return {x1: x1, y1: y1, x2: x2, y2: y2};
-};
+}
 
 /**
  * Handle window resizes
  */
-var resize = function(){
+function resize(){
 	recalc();
 	reflow(false);
-};
+}
 
 /**
  * Add a node to a region
  * @param {Element} el Node to add
  * @param {Integer} index Region index to add to
  */
-layout.addToRegion = function(el, index){
+function addToRegion(el, index){
 	if (typeOf(el) !== 'element' || typeOf(index) !== 'number') {
 		return;
 	}
@@ -166,14 +162,14 @@ layout.addToRegion = function(el, index){
 	}
 
 	el.inject(regions[index]);
-};
+}
 
 /**
  * Activate a layout by index
  * @param {Number} index Layout to activate
  * @param {Bool} animate Whether the transition should be animated
  */
-layout.activate = function(index, animate){
+function activate(index, animate){
 	if (!config.layouts[index]) {
 		return;
 	}
@@ -181,12 +177,14 @@ layout.activate = function(index, animate){
 	curLayout = index;
 	recalc();
 	reflow(animate);
-};
+}
 
 // events
 event.on('layout.init', build);
 window.addEvent('resize', resize);
 
 // export
-module.exports = layout;
+exports = module.exports = {
+	addToRegion: addToRegion
+};
 

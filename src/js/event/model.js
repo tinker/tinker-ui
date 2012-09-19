@@ -1,9 +1,6 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// exposed
-var event = {};
-
 // private
 var ev = new Events();
 
@@ -12,18 +9,21 @@ var ev = new Events();
  * @param {String} type
  * @param {Array} args Passed to subscribers
  */
-event.emit = function(type, args){
+function emit(type, args){
 	ev.fireEvent(type, args);
-};
+}
 
 /**
  * React to an event
  * @param {String} type
  * @param {Function} fn
  */
-event.on = function(type, fn){
+function on(type, fn){
 	ev.addEvent(type, fn);
-};
+}
 
-module.exports = event;
+exports = module.exports = {
+	emit: emit,
+	on: on
+};
 

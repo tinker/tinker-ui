@@ -49,5 +49,5 @@ var Cell = new Class({
 var index = 0;
 
 // export
-module.exports = Cell;
+exports = module.exports = Cell;
 

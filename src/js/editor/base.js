@@ -62,5 +62,5 @@ var editor = {
 };
 
 // export
-module.exports = editor;
+exports = module.exports = editor;
 

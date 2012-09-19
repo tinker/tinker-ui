@@ -22,5 +22,5 @@ var result = {
 };
 
 // export
-module.exports = result;
+exports = module.exports = result;
 

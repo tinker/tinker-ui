@@ -26,5 +26,5 @@ var editor = Object.merge({}, editorBase, {
 	}
 });
 
-module.exports = editor;
+exports = module.exports = editor;
 

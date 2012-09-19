@@ -91,5 +91,5 @@ var Popover = new Class({
 	}
 });
 
-module.exports = Popover;
+exports = module.exports = Popover;
 

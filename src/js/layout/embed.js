@@ -4,17 +4,11 @@
 // required modules
 var event = require('./../event/model');
 
-// exposed
-var layout = {};
-
 // private
-var build = function(){
+function build(){
 	console.log('build embed!');
-};
+}
 
 // events
 event.on('layout.init', build);
-
-// export
-module.exports = layout;
 

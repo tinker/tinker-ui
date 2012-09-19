@@ -10,7 +10,7 @@ var event = require('./../event/model'),
 /**
  * Build up required elements
  */
-var build = function(){
+function build(){
 	layout.addToRegion(new Element('a.icn50.icn-meta[href=#meta]', {
 		events: { click: metaClick }
 	}), 0);
@@ -23,39 +23,39 @@ var build = function(){
 	layout.addToRegion(new Element('a.icn50.icn-save[href=#save]', {
 		events: { click: saveClick }
 	}), 2);
-};
+}
 
 /**
  * Handle click on meta button
  */
-var metaClick = function(e){
+function metaClick(e){
 	e.preventDefault();
 	console.log('meta');
-};
+}
 
 /**
  * Handle click on new button
  */
-var newClick = function(e){
+function newClick(e){
 	e.preventDefault();
 	console.log('new');
-};
+}
 
 /**
  * Handle click on run button
  */
-var runClick = function(e){
+function runClick(e){
 	e.preventDefault();
 	tinker.run();
-};
+}
 
 /**
  * Handle click on save button
  */
-var saveClick = function(e){
+function saveClick(e){
 	e.preventDefault();
 	tinker.save();
-};
+}
 
 // events
 event.on('layout.build', build);

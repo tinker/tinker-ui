@@ -1,26 +1,16 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// exposed
-var user = {};
-
 /**
- * Attempt to log a user in
- * @param {String} email
- * @param {String} password
- * @return {Boolean}
+ * Attempt to authenticate a user through a provider
+ * @param {String} provider
  */
-user.login = function(email, password){
-	console.log('./user/model.login(', email, password, ');');
-};
+function auth(provider){
+	provider = provider || 'github';
+	window.location = '/auth/'+provider;
+}
 
-/**
- * Log the current user out
- * @return {Boolean}
- */
-user.logout = function(){
-	console.log('./user/model.logout();');
+module.exports = {
+	auth: auth
 };
-
-module.exports = user;
 

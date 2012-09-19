@@ -11,20 +11,20 @@ var assetButton;
 /**
  * Build up required modules
  */
-var build = function(){
+function build(){
 	assetButton = new Element('a.icn50.icn-assets[href=#assets]', {
 		events: { click: assetsClick }
 	});
 	layout.addToRegion(assetButton, 0);
-};
+}
 
 /**
  * Handle click on assets button
  */
-var assetsClick = function(e){
+function assetsClick(e){
 	e.preventDefault();
 	console.log('assets');
-};
+}
 
 // events
 event.on('layout.build', build);

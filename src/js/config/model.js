@@ -17,5 +17,5 @@ config.merge = function(cfg){
 };
 
 // export
-module.exports = config;
+exports = module.exports = config;
 

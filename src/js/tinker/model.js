@@ -1,9 +1,6 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// exposed
-var tinker = {};
-
 // private
 var validFormat = {
 	meta: {
@@ -37,7 +34,7 @@ var validFormat = {
  * Attempt to fetch the tinker data from the dom and parse it
  * @return {Object, Boolean} The tinker data, or false if not found
  */
-var parseData = function(){
+function parseData(){
 	var el;
 	if ((el = $('tinker-data')) !== null) {
 		var data = el.get('text');
@@ -49,7 +46,7 @@ var parseData = function(){
 			return false;
 		}
 	}
-};
+}
 
 /**
  * Validate a data structure against a valid tinker format
@@ -57,7 +54,7 @@ var parseData = function(){
  * @param {Mixed} compare The data to validate against
  * @return {Mixed} The filtered/validated data
  */
-var validateData = function(data, compare){
+function validateData(data, compare){
 	var valid = {};
 	Object.each(data, function(value, key){
 		if (key in compare) {
@@ -67,13 +64,13 @@ var validateData = function(data, compare){
 		}
 	});
 	return valid;
-};
+}
 
 /**
  * Check if a given key is valid
  * @param {String} key The path to validate
  */
-var isValidPath = function(key){
+function isValidPath(key){
 	var path = key.split('.'), valid = validFormat;
 	while (path.length) {
 		key = path.shift();
@@ -84,7 +81,7 @@ var isValidPath = function(key){
 		}
 	}
 	return true;
-};
+}
 
 var parsed = parseData(), validated;
 if (parsed) {
@@ -96,7 +93,7 @@ if (parsed) {
  * @param {String} key The key to fetch
  * @return {Mixed} The data
  */
-tinker.get = function(key){
+function get(key){
 	var path = key.split('.'), data = validated;
 	while (path.length) {
 		key = path.shift();
@@ -108,14 +105,14 @@ tinker.get = function(key){
 		}
 	}
 	return data;
-};
+}
 
 /**
  * Set some new data into the tinker
  * @param {String} key The key to set
  * @param {Mixed} value The value to set
  */
-tinker.set = function(key, value){
+function set(key, value){
 	if (!isValidPath(key)) {
 		return false;
 	}
@@ -128,22 +125,27 @@ tinker.set = function(key, value){
 			data = data[k];
 		}
 	}
-};
+}
 
 /**
  * Run the tinker
  */
-tinker.run = function(){
+function run(){
 	console.log('run tinker');
-};
+}
 
 /**
  * Save the tinker
  */
-tinker.save = function(){
+function save(){
 	console.log('save tinker');
-};
+}
 
 // export
-module.exports = tinker;
+exports = module.exports = {
+	get: get,
+	set: set,
+	run: run,
+	save: save
+};
 
