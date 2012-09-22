@@ -1,6 +1,8 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
+var event = require('./../event/model');
+
 // exposed
 var editor = {
 
@@ -30,6 +32,11 @@ var editor = {
 			onBlur: this.onBlur.bind(this)
 		});
 		this.build();
+		this.setEvents();
+	},
+
+	setEvents: function(){
+		event.on('tinker.run', this.onSubmit.bind(this));
 	},
 
 	/**
@@ -48,13 +55,16 @@ var editor = {
 		this.codemirror.setLineClass(this.curLine, null);
 	},
 
+	onSubmit: function(){
+		if (!this.codemirror) return;
+		this.textarea.set('value', this.codemirror.getValue().toBase64());
+	},
+
 	/**
 	 * Highlight the active line
 	 */
 	highlightLine: function(){
-		if (!this.codemirror) {
-			return;
-		}
+		if (!this.codemirror) return;
 		this.codemirror.setLineClass(this.curLine, null, null);
 		this.curLine = this.codemirror.getCursor().line;
 		this.codemirror.setLineClass(this.curLine, null, 'active-line');

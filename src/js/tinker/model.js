@@ -1,6 +1,8 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
+var event = require('./../event/model');
+
 // private
 var validFormat = {
 	meta: {
@@ -131,7 +133,8 @@ function set(key, value){
  * Run the tinker
  */
 function run(){
-	console.log('run tinker');
+	event.emit('tinker.run');
+	$('wrapper').submit();
 }
 
 /**
