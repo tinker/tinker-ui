@@ -130,6 +130,15 @@ function set(key, value){
 }
 
 /**
+ *
+ */
+function init(){
+	if (get('meta.hash')) {
+		run();
+	}
+}
+
+/**
  * Run the tinker
  */
 function run(){
@@ -143,6 +152,8 @@ function run(){
 function save(){
 	console.log('save tinker');
 }
+
+event.on('tinker.load', init);
 
 // export
 exports = module.exports = {

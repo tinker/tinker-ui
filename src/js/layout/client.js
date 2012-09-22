@@ -49,6 +49,8 @@ function build(){
 	styleEditor.init(cells[1].getInner());
 	behaviourEditor.init(cells[2].getInner());
 	result.init(cells[3].getInner());
+
+	event.emit('tinker.load');
 }
 
 /**
