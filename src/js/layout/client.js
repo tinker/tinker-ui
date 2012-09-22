@@ -18,8 +18,9 @@ var regions = [], curLayout = null, body, cells,
  * Build up the base layout
  */
 function build(){
+	var data = {urls: config.urls};
 	$(document.body).adopt(
-		new Element('div', {html: slab.load('layout')()})
+		new Element('div', {html: slab.load('layout')(data)}).getChildren()
 	);
 	body = $('body');
 	cells = [

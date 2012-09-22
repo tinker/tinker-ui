@@ -1,5 +1,5 @@
 {slab layout}
-<form method="post" action="#sandbox" target="sandbox" class="wrapper" id="wrapper">
+<form method="post" action="{urls.sandbox}" target="sandbox" class="wrapper" id="wrapper">
 	<header>
 		<section class="rgn rgn-tl"></section>
 		<section class="rgn rgn-tc"></section>
