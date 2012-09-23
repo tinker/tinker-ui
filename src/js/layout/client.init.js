@@ -2,7 +2,7 @@
 'use strict';
 
 require('./client');
-require('./../asset/view');
+require('./../dependency/view');
 require('./../tinker/view');
 require('./../user/view');
 

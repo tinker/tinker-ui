@@ -6,24 +6,24 @@ var event = require('./../event/model'),
 	layout = require('./../layout/client');
 
 // private
-var assetButton;
+var depButton;
 
 /**
  * Build up required modules
  */
 function build(){
-	assetButton = new Element('a.icn50.icn-assets[href=#assets]', {
-		events: { click: assetsClick }
+	depButton = new Element('a.icn50.icn-dependencies[href=#dependencies]', {
+		events: { click: dependencyClick }
 	});
-	layout.addToRegion(assetButton, 0);
+	layout.addToRegion(depButton, 0);
 }
 
 /**
  * Handle click on assets button
  */
-function assetsClick(e){
+function dependencyClick(e){
 	e.preventDefault();
-	console.log('assets');
+	console.log('dependencies');
 }
 
 // events
