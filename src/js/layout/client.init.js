@@ -4,4 +4,5 @@
 require('./client');
 require('./../asset/view');
 require('./../tinker/view');
+require('./../user/view');
 
