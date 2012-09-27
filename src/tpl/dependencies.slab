@@ -1,0 +1,15 @@
+{slab dependencies}
+<fieldset>
+	<ul>
+		<li>
+			<select id="dependency-select">
+				<option value="">Select a dependency to add</option>
+			</select>
+		</li>
+		<li>
+			<input id="dependency-url">
+		</li>
+	</ul>
+	<ul id="dependency-list"></ul>
+</fieldset>
+{endslab}
