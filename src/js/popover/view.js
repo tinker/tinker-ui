@@ -23,7 +23,7 @@ var Popover = new Class({
 	 */
 	initialize: function(body, options){
 		this.setOptions(options);
-		this.el = new Element('div.po').inject(document.body);
+		this.el = new Element('div.po').inject($('wrapper'));
 		this.el.set('morph', {duration: 200});
 
 		if (typeOf(body) === 'element') {

@@ -10,7 +10,8 @@ var event = require('./../event/model'),
 	util = require('./../util/model');
 
 // private
-var dependencies = {}, depButton, depPopover, depSelect, depData;
+var dependencies = {}, depButton, depPopover,
+	depSelect, depUrl, depList, depData;
 
 /**
  * Build up required modules
@@ -25,9 +26,12 @@ function build(){
 	depPopover = new Popover(content, {toggle: depButton});
 
 	depSelect = content.getElement('#dependency-select');
+	depUrl = content.getElement('#dependency-url');
+	depList = content.getElement('#dependency-list');
 	depData = util.parseData('dependency-data');
 	if (depSelect && depData){
-		var i = 0, j, x = 0, dep, group, version;
+		var firstOption = depSelect.getElement('option'),
+			i = 0, j, x = 0, dep, group, version;
 		for (; i < depData.length; i++){
 			dep = depData[i];
 			if (dep.versions && dep.versions.length){
@@ -51,6 +55,7 @@ function build(){
 					dependency.add(dep.href[i]);
 				}
 			}
+			firstOption.set('selected', true);
 		});
 	}
 
@@ -70,6 +75,19 @@ function dependencyClick(e){
 	depPopover.toggle();
 }
 
+function renderList(){
+	depList.empty();
+	var deps = dependency.list(), i = 0, href, name, data, li;
+	for (; i < deps.length; i++){
+		href = deps[i];
+		name = href.match(/([^\/]+)$/)[1];
+		data = {name: name, href: href};
+		li = new Element('ul', {html: slab.load('dependency')(data)}).getChildren()[0];
+		li.inject(depList);
+	}
+}
+
 // events
 event.on('layout.build', build);
+event.on('dependency.add', renderList);
 
