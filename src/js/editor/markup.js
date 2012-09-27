@@ -8,6 +8,12 @@ var editorBase = require('./base'),
 // exposed
 var editor = Object.merge({}, editorBase, {
 	/**
+	 * The type of editor
+	 */
+	type: 'markup',
+	language: 'html',
+
+	/**
 	 * Build up the editor
 	 */
 	build: function(){
