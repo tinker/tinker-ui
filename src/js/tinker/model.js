@@ -179,11 +179,10 @@ function run(){
 function save(){
 	run();
 	event.emit('tinker.update');
-	var data = get();
 	new Request.JSON({
 		method: 'post',
 		url: config.urls.api+'/tinkers',
-		data: data,
+		data: JSON.stringify(get()),
 		onSuccess: function(response){
 			data.saved = Object.clone(data.current);
 			dirty = false;
