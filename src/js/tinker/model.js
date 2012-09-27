@@ -1,7 +1,8 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
-var event = require('./../event/model');
+var event = require('./../event/model'),
+	config = require('./../config/model');
 
 // private
 var format = {
@@ -179,6 +180,7 @@ function set(key, value){
 	}
 }
 
+
 /**
  * Run the tinker
  */
@@ -192,7 +194,29 @@ function run(){
  * Save the tinker
  */
 function save(){
-	console.log('save tinker');
+	run();
+	event.emit('tinker.update');
+	var data = get();
+	new Request.JSON({
+		method: 'post',
+		url: config.urls.api+'/tinkers',
+		data: data,
+		onSuccess: function(response){
+			data.saved = Object.clone(data.current);
+			dirty = false;
+			var url = config.urls.client;
+			url += '/'+response.meta.hash+'/'+response.meta.revision+'/';
+
+			if (!!(window.history && window.history.pushState)) {
+				window.history.pushState(null, null, url);
+			} else {
+				window.location = url;
+			}
+		},
+		onFailure: function(){
+			console.log('oooooh shit', arguments);
+		}
+	}).send();
 }
 
 event.on('tinker.load', init);
