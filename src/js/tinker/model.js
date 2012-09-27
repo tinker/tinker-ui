@@ -2,7 +2,8 @@
 'use strict';
 
 var event = require('./../event/model'),
-	config = require('./../config/model');
+	config = require('./../config/model'),
+	util = require('./../util/model');
 
 // private
 var format = {
@@ -47,7 +48,7 @@ data.current = {
 			body: ""
 		}
 	}
-}
+};
 
 
 /**
@@ -61,27 +62,9 @@ function setup(){
 	};
 
 	if ($('tinker-data')) {
-		data.current = validateData(parseData(), format);
+		data.current = validateData(util.parseData('tinker-data'), format);
 	}
 	data.saved = data.current;
-}
-
-/**
- * Attempt to fetch the tinker data from the dom and parse it
- * @return {Object, Boolean} The tinker data, or false if not found
- */
-function parseData(){
-	var el = $('tinker-data');
-	if (el !== null) {
-		var data = el.get('text');
-		try {
-			var parsed = JSON.parse(data);
-			return parsed;
-		} catch(e) {
-			console.warn('Failed to parse Tinker json data: '+e.message);
-			return false;
-		}
-	}
 }
 
 /**
