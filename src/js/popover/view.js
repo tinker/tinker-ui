@@ -9,6 +9,7 @@ var Popover = new Class({
 
 	options: {
 		anchor: 'tl',
+		toggle: null,
 		position: {
 			x: 0,
 			y: 50
@@ -41,10 +42,19 @@ var Popover = new Class({
 	 * Position the overlay
 	 */
 	position: function(){
-		this.el.setStyles({
-			top: this.options.position.x,
-			left: this.options.position.y
-		});
+		if (this.options.toggle) {
+			var pos = this.options.toggle.getPosition(),
+				size = this.options.toggle.getSize();
+			this.el.setStyles({
+				top: pos.y + size.y,
+				left: pos.x
+			})
+		} else {
+			this.el.setStyles({
+				top: this.options.position.x,
+				left: this.options.position.y
+			});
+		}
 	},
 
 	/**
