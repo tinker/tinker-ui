@@ -1,7 +1,8 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
-var event = require('./../event/model');
+var event = require('./../event/model'),
+	tinker = require('./../tinker/model');
 
 // exposed
 var editor = {
@@ -36,7 +37,8 @@ var editor = {
 	},
 
 	setEvents: function(){
-		event.on('tinker.run', this.onSubmit.bind(this));
+		event.on('tinker.run', this.onRun.bind(this));
+		event.on('tinker.update', this.onUpdate.bind(this));
 	},
 
 	/**
@@ -55,9 +57,18 @@ var editor = {
 		this.codemirror.setLineClass(this.curLine, null);
 	},
 
-	onSubmit: function(){
+	onRun: function(){
 		if (!this.codemirror) return;
 		this.textarea.set('value', this.codemirror.getValue().toBase64());
+	},
+
+	/**
+	 * Update tinker data with latest from editor
+	 */
+	onUpdate: function(){
+		if (!this.codemirror) return;
+		tinker.set('code.'+this.type+'.type', this.language);
+		tinker.set('code.'+this.type+'.body', this.codemirror.getValue());
 	},
 
 	/**
