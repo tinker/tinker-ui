@@ -4,7 +4,7 @@
 var event = require('./../event/model');
 
 // private
-var validFormat = {
+var format = {
 	meta: {
 		hash: "",
 		revision: 0,
@@ -12,10 +12,7 @@ var validFormat = {
 		description: "",
 		created: ""
 	},
-	dependencies: {
-		scripts: [""],
-		styles: [""]
-	},
+	dependencies: [""],
 	code: {
 		markup: {
 			type: "",
@@ -32,13 +29,49 @@ var validFormat = {
 	}
 };
 
+var dirty = false, data = {};
+
+data.current = {
+	code: {
+		markup: {
+			type: "html",
+			body: ""
+		},
+		style: {
+			type: "css",
+			body: ""
+		},
+		behaviour: {
+			type: "js",
+			body: ""
+		}
+	}
+}
+
+
+/**
+ * Executed the first time the module is loaded
+ */
+function setup(){
+	window.onbeforeunload = function(){
+		if (isDirty()){
+			return 'You have unsaved changes to this Tinker';
+		}
+	};
+
+	if ($('tinker-data')) {
+		data.current = validateData(parseData(), format);
+	}
+	data.saved = data.current;
+}
+
 /**
  * Attempt to fetch the tinker data from the dom and parse it
  * @return {Object, Boolean} The tinker data, or false if not found
  */
 function parseData(){
-	var el;
-	if ((el = $('tinker-data')) !== null) {
+	var el = $('tinker-data');
+	if (el !== null) {
 		var data = el.get('text');
 		try {
 			var parsed = JSON.parse(data);
@@ -53,7 +86,7 @@ function parseData(){
 /**
  * Validate a data structure against a valid tinker format
  * @param {Mixed} data The data to validate
- * @param {Mixed} compare The data to validate against
+ * @param {Mixed} compare The format to validate against
  * @return {Mixed} The filtered/validated data
  */
 function validateData(data, compare){
@@ -69,15 +102,22 @@ function validateData(data, compare){
 }
 
 /**
+ * Executed upon layout built
+ */
+function init(){
+	if (get('meta.hash')) run();
+}
+
+/**
  * Check if a given key is valid
  * @param {String} key The path to validate
  */
-function isValidPath(key){
-	var path = key.split('.'), valid = validFormat;
+function isValidKey(key){
+	var path = key.split('.'), k, f = format;
 	while (path.length) {
-		key = path.shift();
-		if (key in valid) {
-			valid = valid[key];
+		k = path.shift();
+		if (k in f) {
+			f = f[k];
 		} else {
 			return false;
 		}
@@ -85,9 +125,11 @@ function isValidPath(key){
 	return true;
 }
 
-var parsed = parseData(), validated;
-if (parsed) {
-	validated = validateData(parsed, validFormat);
+/**
+ * Check if the tinker has unsaved changes
+ */
+function isDirty(){
+	return dirty;
 }
 
 /**
@@ -96,17 +138,18 @@ if (parsed) {
  * @return {Mixed} The data
  */
 function get(key){
-	var path = key.split('.'), data = validated;
+	if (!key) return data.current;
+	var path = key.split('.'), k, d = data.current;
 	while (path.length) {
-		key = path.shift();
-		if (data && key in data) {
-			data = data[key];
+		k = path.shift();
+		if (d && k in d) {
+			d = d[k];
 		} else {
-			data = undefined;
+			d = undefined;
 			break;
 		}
 	}
-	return data;
+	return d;
 }
 
 /**
@@ -115,26 +158,24 @@ function get(key){
  * @param {Mixed} value The value to set
  */
 function set(key, value){
-	if (!isValidPath(key)) {
-		return false;
-	}
-	var path = key.split('.'), data = validated, k;
+	if (!isValidKey(key)) return;
+	var clone = Object.clone(data.current), change = false,
+		path = key.split('.'), k, d = clone;
 	while (path.length) {
 		k = path.shift();
-		if (!(k in data)) {
-			data[k] = path.length ? {} : value;
+		if (path.length){
+			if (!(k in d)) d[k] = {};
+			d = d[k];
 		} else {
-			data = data[k];
+			if (d[k] !== value) {
+				change = true;
+				d[k] = value;
+			}
 		}
 	}
-}
-
-/**
- *
- */
-function init(){
-	if (get('meta.hash')) {
-		run();
+	if (change) {
+		data.current = clone;
+		dirty = true;
 	}
 }
 
@@ -142,6 +183,7 @@ function init(){
  * Run the tinker
  */
 function run(){
+	event.emit('tinker.update');
 	event.emit('tinker.run');
 	$('wrapper').submit();
 }
@@ -154,6 +196,7 @@ function save(){
 }
 
 event.on('tinker.load', init);
+setup();
 
 // export
 exports = module.exports = {
