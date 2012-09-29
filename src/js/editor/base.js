@@ -32,6 +32,7 @@ var editor = {
 			onCursorActivity: this.highlightLine.bind(this),
 			onBlur: this.onBlur.bind(this)
 		});
+		this.mode = tinker.get('code.'+this.type+'.type');
 		this.build();
 		this.setEvents();
 	},
