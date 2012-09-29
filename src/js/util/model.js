@@ -17,7 +17,12 @@ function parseData(id){
 	}
 }
 
+function isEqual(a, b){
+	return a !== b;
+}
+
 exports = module.exports = {
-	parseData: parseData
+	parseData: parseData,
+	isEqual: isEqual
 };
 

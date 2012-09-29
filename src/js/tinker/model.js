@@ -163,7 +163,7 @@ function set(key, value){
 			if (!(k in d)) d[k] = {};
 			d = d[k];
 		} else {
-			if (d[k] !== value) {
+			if (!util.isEqual(d[k], value)) {
 				change = true;
 				d[k] = value;
 			}
