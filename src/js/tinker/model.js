@@ -8,25 +8,25 @@ var event = require('./../event/model'),
 // private
 var format = {
 	meta: {
-		hash: "",
+		hash: '',
 		revision: 0,
-		title: "",
-		description: "",
-		created: ""
+		title: '',
+		description: '',
+		created: ''
 	},
-	dependencies: [""],
+	dependencies: [''],
 	code: {
 		markup: {
-			type: "",
-			body: ""
+			type: '',
+			body: ''
 		},
 		style: {
-			type: "",
-			body: ""
+			type: '',
+			body: ''
 		},
 		behaviour: {
-			type: "",
-			body: ""
+			type: '',
+			body: ''
 		}
 	}
 };
@@ -36,16 +36,13 @@ var dirty = false, data = {};
 data.current = {
 	code: {
 		markup: {
-			type: "html",
-			body: ""
+			type: 'html'
 		},
 		style: {
-			type: "css",
-			body: ""
+			type: 'css'
 		},
 		behaviour: {
-			type: "js",
-			body: ""
+			type: 'js'
 		}
 	}
 };
