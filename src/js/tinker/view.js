@@ -11,16 +11,16 @@ var event = require('./../event/model'),
  * Build up required elements
  */
 function build(){
-	layout.addToRegion(new Element('a.icn50.icn-meta[href=#meta]', {
+	layout.addToRegion(new Element('span.icn50.icn-meta', {
 		events: { click: metaClick }
 	}), 0);
 	layout.addToRegion(new Element('a.icn50.icn-new[href=#new]', {
 		events: { click: newClick }
 	}), 0);
-	layout.addToRegion(new Element('a.icn50.icn-run[href=#run]', {
+	layout.addToRegion(new Element('span.icn50.icn-run', {
 		events: { click: runClick }
 	}), 2);
-	layout.addToRegion(new Element('a.icn50.icn-save[href=#save]', {
+	layout.addToRegion(new Element('span.icn50.icn-save', {
 		events: { click: saveClick }
 	}), 2);
 }

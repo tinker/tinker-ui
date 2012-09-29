@@ -17,7 +17,7 @@ var dependencies = {}, depButton, depPopover,
  * Build up required modules
  */
 function build(){
-	depButton = new Element('a.icn50.icn-dependencies[href=#dependencies]', {
+	depButton = new Element('span.icn50.icn-dependencies', {
 		events: { click: dependencyClick }
 	});
 	layout.addToRegion(depButton, 0);
