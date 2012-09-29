@@ -17,12 +17,22 @@ function parseData(id){
 	}
 }
 
+function isEmpty(v){
+	switch(typeOf(v)){
+		case 'null': return true;
+		case 'object': return !Object.keys(v).length;
+		case 'array': return !v.length;
+		case 'string': return !v.length;
+	}
+}
+
 function isEqual(a, b){
 	return a === b;
 }
 
 exports = module.exports = {
 	parseData: parseData,
+	isEmpty: isEmpty,
 	isEqual: isEqual
 };
 
