@@ -36,6 +36,27 @@ var editor = {
 		this.setEvents();
 	},
 
+	/**
+	 * Build up the editor
+	 */
+	build: function(){
+		this.frame = new Element('div.editor');
+		this.textarea = new Element('textarea', {
+			name: 'tinker[code]['+this.type+'][body]',
+			value: tinker.get('code.'+this.type+'.body')
+		});
+		this.frame.adopt(this.textarea).inject(this.wrapper);
+		var options = Object.append({
+			mode: this.modes[this.mode],
+			value: this.textarea.get('value')
+		}, this.mirrorOptions);
+		this.textarea.addClass('is-hidden');
+		this.codemirror = window.CodeMirror(this.frame, options);
+	},
+
+	/**
+	 * Attach events
+	 */
 	setEvents: function(){
 		event.on('tinker.run', this.onRun.bind(this));
 		event.on('tinker.update', this.onUpdate.bind(this));
@@ -67,7 +88,7 @@ var editor = {
 	 */
 	onUpdate: function(){
 		if (!this.codemirror) return;
-		tinker.set('code.'+this.type+'.type', this.language);
+		tinker.set('code.'+this.type+'.type', this.mode);
 		tinker.set('code.'+this.type+'.body', this.codemirror.getValue());
 	},
 
