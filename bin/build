@@ -36,6 +36,7 @@ event.once('js.mootools', function(){
 			'/vendor/CodeMirror/lib/codemirror.js',
 			'/vendor/CodeMirror/mode/xml/xml.js',
 			'/vendor/CodeMirror/mode/css/css.js',
+			'/vendor/CodeMirror/mode/less/less.js',
 			'/vendor/CodeMirror/mode/javascript/javascript.js'
 		], file
 	while (files.length) {

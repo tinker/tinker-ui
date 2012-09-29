@@ -8,7 +8,8 @@ var editorBase = require('./base');
 var editor = Object.merge({}, editorBase, {
 	type: 'style',
 	modes: {
-		'css': 'text/css'
+		'css': 'text/css',
+		'less': 'text/x-less'
 	}
 });
 

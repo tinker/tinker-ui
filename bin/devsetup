@@ -30,6 +30,7 @@ event.once('js.mootools', function(){
 		'codemirror.js': '/CodeMirror/lib/codemirror.js',
 		'mode-xml.js': '/CodeMirror/mode/xml/xml.js',
 		'mode-css.js': '/CodeMirror/mode/css/css.js',
+		'mode-less.js': '/CodeMirror/mode/less/less.js',
 		'mode-javascript.js': '/CodeMirror/mode/javascript/javascript.js',
 		'codemirror.css': '/CodeMirror/lib/codemirror.css',
 		'slab.js': '/slab/src/slab.js',
