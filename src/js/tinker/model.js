@@ -65,6 +65,18 @@ function setup(){
 		data.current = validateData(util.parseData('tinker-data'), format);
 	}
 	data.saved = data.current;
+
+	var meta = get('meta');
+	if (meta && meta.hash){
+		var url = '/'+meta.hash+'/'+meta.revision+'/';
+		if (url !== window.location.pathname) {
+			if (!!(window.history && window.history.pushState)) {
+				window.history.pushState(null, null, url);
+			} else {
+				window.location = url;
+			}
+		}
+	}
 }
 
 /**
