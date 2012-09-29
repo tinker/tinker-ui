@@ -1,6 +1,20 @@
 // Chiel Kunkels (@chielkunkels)
 'use strict';
 
+Element.Events.outerClick = {
+	base : 'click',
+	condition : function(e){
+		e.stopPropagation();
+		return false;
+	},
+	onAdd : function(fn){
+		this.getDocument().addEvent('click', fn);
+	},
+	onRemove : function(fn){
+		this.getDocument().removeEvent('click', fn);
+	}
+};
+
 var backdrop;
 
 var Popover = new Class({
@@ -48,7 +62,7 @@ var Popover = new Class({
 			this.el.setStyles({
 				top: pos.y + size.y,
 				left: pos.x
-			})
+			});
 		} else {
 			this.el.setStyles({
 				top: this.options.position.x,
@@ -72,6 +86,7 @@ var Popover = new Class({
 	 * Display the popover
 	 */
 	show: function(){
+		if (this.shown) return;
 		this.shown = true;
 		backdrop.setStyles({
 			display: 'block',
@@ -86,18 +101,28 @@ var Popover = new Class({
 			opacity: 1,
 			marginTop: 0
 		});
+
+		var self = this;
+		this.el.addEvent('outerClick', this.outerClickEvent = function(e){
+			if (!self.options.toggle) return;
+			if (self.options.toggle === e.target) return;
+			self.hide();
+		});
 	},
 
 	/**
 	 * Hide the popover
 	 */
 	hide: function(){
+		if (!this.shown) return;
 		this.shown = false;
 		backdrop.setStyles({
 			display: 'none',
 			opacity: '0'
 		});
 		this.el.setStyle('display', 'none');
+
+		this.el.removeEvent('outerClick', this.outerClickEvent);
 	}
 });
 
