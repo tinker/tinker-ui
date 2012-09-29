@@ -1,7 +1,7 @@
 {slab dependency}
 <li>
-	<span class="name">{name}</span>
+	<span class="name" title="{href}">{name}</span>
 	<a class="remove">Remove</a>
-	<input type="hidden" name="tinker[dependencies][]" value="{href}">
+	<input class="href" type="hidden" name="tinker[dependencies][]" value="{href}">
 </li>
 {endslab}

@@ -17,6 +17,16 @@ function add(href){
 }
 
 /**
+ * Remove a dependency
+ * @param {String} href URL to the dependency
+ */
+function remove(href){
+	if (!dependencies.contains(href)) return;
+	dependencies.erase(href);
+	event.emit('dependency.remove', href);
+}
+
+/**
  * Return all dependencies
  * @return {Array}
  */
@@ -33,6 +43,7 @@ function onUpdate(){
 
 exports = module.exports = {
 	add: add,
+	remove: remove,
 	list: list
 };
 

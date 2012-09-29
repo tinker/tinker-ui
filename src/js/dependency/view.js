@@ -29,6 +29,9 @@ function build(){
 	depUrl = content.getElement('#dependency-url');
 	depList = content.getElement('#dependency-list');
 	depData = util.parseData('dependency-data');
+	if (!depData){
+		depSelect.getParent('li').destroy();
+	}
 	if (depSelect && depData){
 		var firstOption = depSelect.getElement('option'),
 			i = 0, j, x = 0, dep, group, version;
@@ -59,6 +62,25 @@ function build(){
 		});
 	}
 
+	if (depUrl) {
+		depUrl.addEvent('keydown', function(e){
+			if (e.key !== 'enter') return;
+
+			e.preventDefault();
+			var href = depUrl.get('value').trim();
+			depUrl.set('value', '');
+
+			if (href === '') return;
+			dependency.add(href);
+		});
+	}
+
+	depList.addEvent('click:relay(.remove)', function(e){
+		var li = e.target.getParent('li'),
+			href = li.getElement('.href').get('value');
+		dependency.remove(href);
+	});
+
 	var deps = tinker.get('dependencies');
 	if (deps && deps.length > 0) {
 		deps.forEach(function(href){
@@ -75,6 +97,9 @@ function dependencyClick(e){
 	depPopover.toggle();
 }
 
+/**
+ * Render the list of dependencies
+ */
 function renderList(){
 	depList.empty();
 	var deps = dependency.list(), i = 0, href, name, data, li;
@@ -90,4 +115,5 @@ function renderList(){
 // events
 event.on('layout.build', build);
 event.on('dependency.add', renderList);
+event.on('dependency.remove', renderList);
 
