@@ -1,0 +1,5 @@
+{slab editor}
+<div class="editor">
+	<textarea name="{name}">{value}</textarea>
+</div>
+{endslab}

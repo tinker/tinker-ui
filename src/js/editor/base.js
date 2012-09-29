@@ -40,17 +40,20 @@ var editor = {
 	 * Build up the editor
 	 */
 	build: function(){
-		this.frame = new Element('div.editor');
-		this.textarea = new Element('textarea', {
+		var data = {
 			name: 'tinker[code]['+this.type+'][body]',
-			value: tinker.get('code.'+this.type+'.body')
-		});
-		this.frame.adopt(this.textarea).inject(this.wrapper);
+			value: new Element('div', {text: tinker.get('code.'+this.type+'.body')}).get('html')
+		};
+		this.frame = new Element('div', {
+			html: window.slab.load('editor')(data)
+		}).getChildren()[0].inject(this.wrapper);
+		this.textarea = this.frame.getElement('textarea');
+		this.textarea.addClass('is-hidden');
+
 		var options = Object.append({
 			mode: this.modes[this.mode],
 			value: this.textarea.get('value')
 		}, this.mirrorOptions);
-		this.textarea.addClass('is-hidden');
 		this.codemirror = window.CodeMirror(this.frame, options);
 	},
 
