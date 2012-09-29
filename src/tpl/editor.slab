@@ -1,5 +1,12 @@
 {slab editor}
 <div class="editor">
+	<div class="editor-mode">
+		<select name="{modeName}">
+		{for k,v in modes}
+			<option value="{k}"{if mode === k}selected{end}>{k}</option>
+		{end}
+		</select>
+	</div>
 	<textarea name="{name}">{value}</textarea>
 </div>
 {endslab}
