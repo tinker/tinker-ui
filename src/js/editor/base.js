@@ -51,6 +51,7 @@ var editor = {
 		this.frame = new Element('div', {
 			html: window.slab.load('editor')(data)
 		}).getChildren()[0].inject(this.wrapper);
+		this.modeSelect = this.frame.getElement('.editor-mode select');
 		this.textarea = this.frame.getElement('textarea');
 		this.textarea.addClass('is-hidden');
 
@@ -65,8 +66,20 @@ var editor = {
 	 * Attach events
 	 */
 	setEvents: function(){
+		var self = this;
+		this.modeSelect.addEvent('change', function(){
+			self.changeMode(this.getElement(':selected').get('value'));
+		});
+
 		event.on('tinker.run', this.onRun.bind(this));
 		event.on('tinker.update', this.onUpdate.bind(this));
+	},
+
+	changeMode: function(mode){
+		if (!this.modes[mode]) return false;
+
+		this.codemirror.setOption('mode', this.modes[mode]);
+		this.mode = mode;
 	},
 
 	/**
