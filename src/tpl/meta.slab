@@ -1,0 +1,12 @@
+{slab meta}
+<fieldset>
+	<ul>
+		<li>
+			<input id="meta-title" name="tinker[meta][title]"{if title !== ''} value="{title}"{end}>
+		</li>
+		<li>
+			<textarea id="meta-description" name="tinker[meta][description]">{description}</textarea>
+		</li>
+	</ul>
+</fieldset>
+{endslab}

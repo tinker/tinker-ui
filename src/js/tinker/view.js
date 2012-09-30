@@ -11,9 +11,6 @@ var event = require('./../event/model'),
  * Build up required elements
  */
 function build(){
-	layout.addToRegion(new Element('span.icn50.icn-meta', {
-		events: { click: metaClick }
-	}), 0);
 	layout.addToRegion(new Element('a.icn50.icn-new[href=#new]', {
 		events: { click: newClick }
 	}), 0);
@@ -23,14 +20,6 @@ function build(){
 	layout.addToRegion(new Element('span.icn50.icn-save', {
 		events: { click: saveClick }
 	}), 2);
-}
-
-/**
- * Handle click on meta button
- */
-function metaClick(e){
-	e.preventDefault();
-	console.log('meta');
 }
 
 /**
