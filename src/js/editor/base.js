@@ -44,7 +44,9 @@ var editor = {
 		var data = {
 			modeName: 'tinker[code]['+this.type+'][type]',
 			name: 'tinker[code]['+this.type+'][body]',
-			value: new Element('div', {text: tinker.get('code.'+this.type+'.body')}).get('html'),
+			value: new Element('div', {
+				text: tinker.get('code.'+this.type+'.body') || ''
+			}).get('html'),
 			modes: this.modes,
 			mode: this.mode
 		};
