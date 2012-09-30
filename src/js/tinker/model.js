@@ -160,6 +160,7 @@ function set(key, value){
 			if (!(k in d)) d[k] = {};
 			d = d[k];
 		} else {
+			if (!d[k] && util.isEmpty(value)) continue;
 			if (!util.isEqual(d[k], value)) {
 				change = true;
 				d[k] = value;
@@ -187,7 +188,6 @@ function run(){
  */
 function save(){
 	run();
-	event.emit('tinker.update');
 	new Request.JSON({
 		method: 'post',
 		url: config.urls.api+'/tinkers',
