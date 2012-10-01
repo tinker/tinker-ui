@@ -71,6 +71,7 @@ var editor = {
 		var self = this;
 		this.modeSelect.addEvent('change', function(){
 			self.changeMode(this.getElement(':selected').get('value'));
+			self.codemirror.focus();
 		});
 
 		event.on('tinker.run', this.onRun.bind(this));
