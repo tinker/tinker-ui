@@ -194,6 +194,11 @@ function save(){
 		data: JSON.stringify(get()),
 		emulation: false,
 		onSuccess: function(response){
+			if (!data.current.meta) {
+				data.current.meta = {};
+			}
+			data.current.meta.hash = response.meta.hash;
+			data.current.meta.revision = response.meta.revision;
 			data.saved = response;
 			dirty = false;
 			var url = config.urls.client;
