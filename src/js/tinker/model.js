@@ -188,12 +188,13 @@ function run(){
  */
 function save(){
 	run();
-	new Request.JSON({
-		method: 'post',
-		url: config.urls.api+'/tinkers',
+	var hash = get('meta.hash'),
+		url = config.urls.api+'/tinkers';
+	var options = {
 		data: JSON.stringify(get()),
+		emulation: false,
 		onSuccess: function(response){
-			data.saved = Object.clone(data.current);
+			data.saved = response;
 			dirty = false;
 			var url = config.urls.client;
 			url += '/'+response.meta.hash+'/'+response.meta.revision+'/';
@@ -207,7 +208,19 @@ function save(){
 		onFailure: function(){
 			console.log('oooooh shit', arguments);
 		}
-	}).send();
+	};
+	if (!hash){
+		Object.merge(options, {
+			method: 'post',
+			url: url
+		});
+	} else {
+		Object.merge(options, {
+			method: 'put',
+			url: url+'/'+hash
+		});
+	}
+	new Request.JSON(options).send();
 }
 
 event.on('tinker.load', init);
