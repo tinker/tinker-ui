@@ -1,7 +1,5 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// exposed
 var config = {
 	layout: 'client'
 };
@@ -16,6 +14,5 @@ config.merge = function(cfg){
 	});
 };
 
-// export
-exports = module.exports = config;
+module.exports = config;
 

@@ -1,7 +1,7 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// exposed
+var index = 0;
+
 var Cell = new Class({
 	/**
 	 * Initialise a new cell object
@@ -45,9 +45,5 @@ var Cell = new Class({
 	}
 });
 
-// private
-var index = 0;
-
-// export
 exports = module.exports = Cell;
 

@@ -1,11 +1,10 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// required modules
-var event = require('./event/model'),
-	config = require('./config/model');
+var events = require('./lib/events'),
+	config = require('./lib/config'),
+	plugins = require('./lib/plugins');
 
-require('./layout/init');
+require('./ui/layout/init');
 
 /**
  * Merge passed config and init the app
@@ -14,11 +13,11 @@ require('./layout/init');
 function init(cfg) {
 	cfg = cfg || {};
 	config.merge(cfg);
-	event.emit('init');
+	events.emit('init');
 }
 
-// expose the global object
 window.Tinker = {
-	init: init
+	init: init,
+	registerPlugin: plugins.register
 };
 

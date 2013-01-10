@@ -1,11 +1,9 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-var event = require('./../event/model'),
-	config = require('./../config/model'),
-	util = require('./../util/model');
+var events = require('./../lib/events'),
+	config = require('./../lib/config'),
+	utils = require('./../lib/utils');
 
-// private
 var format = {
 	meta: {
 		hash: '',
@@ -59,7 +57,7 @@ function setup(){
 	};
 
 	if ($('tinker-data')) {
-		data.current = validateData(util.parseData('tinker-data'), format);
+		data.current = validateData(utils.parseData('tinker-data'), format);
 	}
 	data.saved = data.current;
 
@@ -160,8 +158,8 @@ function set(key, value){
 			if (!(k in d)) d[k] = {};
 			d = d[k];
 		} else {
-			if (!d[k] && util.isEmpty(value)) continue;
-			if (!util.isEqual(d[k], value)) {
+			if (!d[k] && utils.isEmpty(value)) continue;
+			if (!utils.isEqual(d[k], value)) {
 				change = true;
 				d[k] = value;
 			}
@@ -178,8 +176,8 @@ function set(key, value){
  * Run the tinker
  */
 function run(){
-	event.emit('tinker.update');
-	event.emit('tinker.run');
+	events.emit('tinker.update');
+	events.emit('tinker.run');
 	$('wrapper').submit();
 }
 
@@ -228,10 +226,9 @@ function save(){
 	new Request.JSON(options).send();
 }
 
-event.on('tinker.load', init);
+events.on('tinker.load', init);
 setup();
 
-// export
 exports = module.exports = {
 	get: get,
 	set: set,

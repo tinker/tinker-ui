@@ -1,12 +1,9 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-var event = require('./../event/model'),
-	tinker = require('./../tinker/model');
+var events = require('./../../lib/events'),
+	tinker = require('./../../lib/tinker');
 
-// exposed
-var editor = {
-
+module.exports = {
 	curLine: 0,
 
 	/**
@@ -74,8 +71,8 @@ var editor = {
 			self.codemirror.focus();
 		});
 
-		event.on('tinker.run', this.onRun.bind(this));
-		event.on('tinker.update', this.onUpdate.bind(this));
+		events.on('tinker.run', this.onRun.bind(this));
+		events.on('tinker.update', this.onUpdate.bind(this));
 	},
 
 	changeMode: function(mode){
@@ -125,7 +122,4 @@ var editor = {
 		this.codemirror.setLineClass(this.curLine, null, 'active-line');
 	}
 };
-
-// export
-exports = module.exports = editor;
 

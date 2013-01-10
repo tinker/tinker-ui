@@ -1,16 +1,13 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// required modules
-var event = require('./../event/model'),
-	config = require('./../config/model'),
-	Cell = require('./../cell/view'),
-	markupEditor = require('./../editor/markup.js'),
-	styleEditor = require('./../editor/style.js'),
-	behaviourEditor = require('./../editor/behaviour.js'),
-	result = require('./../result/base');
+var events = require('./../../lib/events'),
+	config = require('./../../lib/config'),
+	Cell = require('./../cell'),
+	markupEditor = require('./../editors/markup'),
+	styleEditor = require('./../editors/style'),
+	behaviourEditor = require('./../editors/behaviour'),
+	result = require('./../result');
 
-// private
 var regions = [], curLayout = null, body, cells,
 	widths = [], heights = [];
 
@@ -43,14 +40,14 @@ function build(){
 	addToRegion(new Element('span.icn50.icn-info'), 3);
 
 	activate(0, false);
-	event.emit('layout.build');
+	events.emit('layout.build');
 
 	markupEditor.init(cells[0].getInner());
 	styleEditor.init(cells[1].getInner());
 	behaviourEditor.init(cells[2].getInner());
 	result.init(cells[3].getInner());
 
-	event.emit('tinker.load');
+	events.emit('tinker.load');
 }
 
 /**
@@ -182,12 +179,10 @@ function activate(index, animate){
 	reflow(animate);
 }
 
-// events
-event.on('layout.init', build);
+events.on('layout.init', build);
 window.addEvent('resize', resize);
 
-// export
-exports = module.exports = {
+module.exports = {
 	addToRegion: addToRegion
 };
 

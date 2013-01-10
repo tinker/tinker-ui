@@ -1,12 +1,9 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// required modules
-var event = require('./../event/model'),
-	layout = require('./../layout/client'),
-	tinker = require('./model');
+var events = require('./../lib/events'),
+	layout = require('./layout/client'),
+	tinker = require('./../lib/tinker');
 
-// private
 /**
  * Build up required elements
  */
@@ -46,6 +43,5 @@ function saveClick(e){
 	tinker.save();
 }
 
-// events
-event.on('layout.build', build);
+events.on('layout.build', build);
 

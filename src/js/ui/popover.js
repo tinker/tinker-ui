@@ -1,4 +1,3 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
 Element.Events.outerClick = {

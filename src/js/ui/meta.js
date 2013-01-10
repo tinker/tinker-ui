@@ -1,10 +1,9 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-var event = require('./../event/model'),
-	layout = require('./../layout/client'),
-	tinker = require('./../tinker/model'),
-	Popover = require('./../popover/view');
+var events = require('./../lib/events'),
+	layout = require('./layout/client'),
+	tinker = require('./../lib/tinker'),
+	Popover = require('./popover');
 
 var metaButton, metaPopover, metaTitle, metaDescription;
 
@@ -44,7 +43,6 @@ function metaClick(e){
 	metaPopover.toggle();
 }
 
-// events
-event.on('layout.build', build);
-event.on('tinker.update', update);
+events.on('layout.build', build);
+events.on('tinker.update', update);
 

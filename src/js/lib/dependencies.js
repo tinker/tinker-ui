@@ -1,8 +1,7 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-var event = require('./../event/model'),
-	tinker = require('./../tinker/model');
+var events = require('./events'),
+	tinker = require('./tinker');
 
 var dependencies = [];
 
@@ -13,7 +12,7 @@ var dependencies = [];
 function add(href){
 	if (dependencies.contains(href)) return;
 	dependencies.push(href);
-	event.emit('dependency.add', href);
+	events.emit('dependency.add', href);
 }
 
 /**
@@ -23,7 +22,7 @@ function add(href){
 function remove(href){
 	if (!dependencies.contains(href)) return;
 	dependencies.erase(href);
-	event.emit('dependency.remove', href);
+	events.emit('dependency.remove', href);
 }
 
 /**
@@ -47,5 +46,5 @@ exports = module.exports = {
 	list: list
 };
 
-event.on('tinker.update', onUpdate);
+events.on('tinker.update', onUpdate);
 

@@ -1,15 +1,12 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// required modules
-var event = require('./../event/model'),
-	layout = require('./../layout/client'),
-	tinker = require('./../tinker/model'),
-	dependency = require('./model'),
-	Popover = require('./../popover/view'),
-	util = require('./../util/model');
+var events = require('./../lib/events'),
+	layout = require('./layout/client'),
+	tinker = require('./../lib/tinker'),
+	dependency = require('./../lib/dependencies'),
+	Popover = require('./popover'),
+	util = require('./../lib/utils');
 
-// private
 var dependencies = {}, depButton, depPopover,
 	depSelect, depUrl, depList, depData;
 
@@ -112,8 +109,7 @@ function renderList(){
 	}
 }
 
-// events
-event.on('layout.build', build);
-event.on('dependency.add', renderList);
-event.on('dependency.remove', renderList);
+events.on('layout.build', build);
+events.on('dependency.add', renderList);
+events.on('dependency.remove', renderList);
 

@@ -1,11 +1,8 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// required modules
-var event = require('./../event/model'),
-	config = require('./../config/model');
+var events = require('./../../lib/events'),
+	config = require('./../../lib/config');
 
-// private
 /**
  * Figure out which layout is being used and load it
  */
@@ -15,9 +12,9 @@ var init = function(){
 	} else {
 		require('./client.init');
 	}
-	event.emit('layout.init');
+
+	events.emit('layout.init', config.layout);
 };
 
-// events
-event.on('init', init);
+events.on('init', init);
 

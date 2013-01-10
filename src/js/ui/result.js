@@ -1,8 +1,6 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// exposed
-var result = {
+module.exports = {
 	/**
 	 * Create a new result view
 	 */
@@ -20,7 +18,4 @@ var result = {
 		this.frame.inject(this.wrapper);
 	}
 };
-
-// export
-exports = module.exports = result;
 

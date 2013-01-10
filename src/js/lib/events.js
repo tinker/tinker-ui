@@ -1,8 +1,6 @@
-// Chiel Kunkels (@chielkunkels)
 'use strict';
 
-// private
-var ev = new Events();
+var e = new Events();
 
 /**
  * Emit an event
@@ -10,7 +8,7 @@ var ev = new Events();
  * @param {Array} args Passed to subscribers
  */
 function emit(type, args){
-	ev.fireEvent(type, args);
+	e.fireEvent(type, args);
 }
 
 /**
@@ -19,10 +17,10 @@ function emit(type, args){
  * @param {Function} fn
  */
 function on(type, fn){
-	ev.addEvent(type, fn);
+	e.addEvent(type, fn);
 }
 
-exports = module.exports = {
+module.exports = {
 	emit: emit,
 	on: on
 };
