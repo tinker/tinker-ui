@@ -5,10 +5,12 @@
 	bottom: 0;
 	left: 0;
 	background: #fff;
+	border: 1px solid #fff;
 	font: 14px 'bitstream vera sans mono', monospace;
 
 	&.has-focus {
 		background: #fff;
+		border: 1px solid #aaa;
 	}
 
 	.editor-mode {
@@ -33,7 +35,7 @@
 	}
 
 	.active-line {
-		background: #f5f5f5;
+		background: #eee;
 	}
 }
 
@@ -44,15 +46,7 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1;
-	font: inherit;
-}
-.CodeMirror-scroll {
-	overflow: auto;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
 	height: auto;
+	font: inherit;
 }
 

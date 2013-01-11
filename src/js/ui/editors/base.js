@@ -24,11 +24,6 @@ module.exports = {
 	 */
 	init: function(wrapper){
 		this.wrapper = wrapper;
-		Object.append(this.mirrorOptions, {
-			onFocus: this.onFocus.bind(this),
-			onCursorActivity: this.highlightLine.bind(this),
-			onBlur: this.onBlur.bind(this)
-		});
 		this.mode = tinker.get('code.'+this.type+'.type');
 		this.build();
 		this.setEvents();
@@ -73,6 +68,10 @@ module.exports = {
 
 		events.on('tinker.run', this.onRun.bind(this));
 		events.on('tinker.update', this.onUpdate.bind(this));
+
+		this.codemirror.on('focus', this.focus.bind(this));
+		this.codemirror.on('blur', this.blur.bind(this));
+		this.codemirror.on('cursorActivity', this.highlightLine.bind(this));
 	},
 
 	changeMode: function(mode){
@@ -85,7 +84,7 @@ module.exports = {
 	/**
 	 * Focus the editor and highlight the last active line
 	 */
-	onFocus: function(){
+	focus: function(){
 		this.frame.addClass('has-focus');
 		this.highlightLine();
 	},
@@ -93,9 +92,9 @@ module.exports = {
 	/**
 	 * Remove focus and the active line
 	 */
-	onBlur: function(){
+	blur: function(){
 		this.frame.removeClass('has-focus');
-		this.codemirror.setLineClass(this.curLine, null);
+		this.codemirror.removeLineClass(this.curLine, 'wrap');
 	},
 
 	onRun: function(){
@@ -117,9 +116,9 @@ module.exports = {
 	 */
 	highlightLine: function(){
 		if (!this.codemirror) return;
-		this.codemirror.setLineClass(this.curLine, null, null);
+		this.codemirror.removeLineClass(this.curLine, 'wrap');
 		this.curLine = this.codemirror.getCursor().line;
-		this.codemirror.setLineClass(this.curLine, null, 'active-line');
+		this.codemirror.addLineClass(this.curLine, 'wrap', 'active-line');
 	}
 };
 
