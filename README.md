@@ -49,6 +49,11 @@ readme.
 
 ### Setting up
 
+You will first need to install tinker-ui's dependencies, some of which come as
+submodules, others which come as npm packages. Running `npm install` and `git
+submodule update --init --recursive` in the tinker-ui root directory should do
+the trick.
+
 To get started with developing, the easiest thing is to use the `./bin/devsetup`
 script. It takes a single argument which is the public directory of your app. In
 case of a ruby app with a structure similar to the above, we might exercute a
