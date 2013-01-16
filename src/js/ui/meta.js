@@ -11,10 +11,10 @@ var metaButton, metaPopover, metaTitle, metaDescription;
  * Build up required elements
  */
 function build(){
-	metaButton = new Element('span.icn50.icn-meta', {
+	metaButton = new Element('span.icn42.icn-meta', {
 		events: { click: metaClick }
 	});
-	layout.addToRegion(metaButton, 0);
+	layout.addToRegion(metaButton, 'lt');
 
 	var data = {
 		title: tinker.get('meta.title') || '',

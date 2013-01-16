@@ -1,10 +1,21 @@
-.icn50 {
+.icn42 {
 	display: inline-block;
-	width: 49px;
-	height: 50px;
-	border-right: 1px solid #373a43;
+	width: 42px;
+	height: 42px;
+	border-right: 1px solid #3a3a3a;
+	-webkit-transition: background-color 150ms linear;
+	-moz-transition: background-color 150ms linear;
+	transition: background-color 150ms linear;
 	&:hover {
 		background: rgba(255, 255, 255, .1);
+	}
+}
+aside .icn42 {
+	display: block;
+	border-right: 0;
+	border-bottom: 1px solid #ccc;
+	&:hover {
+		background: rgba(0, 0, 0, .08);
 	}
 }
 

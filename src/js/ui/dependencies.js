@@ -14,10 +14,10 @@ var dependencies = {}, depButton, depPopover,
  * Build up required modules
  */
 function build(){
-	depButton = new Element('span.icn50.icn-dependencies', {
+	depButton = new Element('span.icn42.icn-dependencies', {
 		events: { click: dependencyClick }
 	});
-	layout.addToRegion(depButton, 0);
+	layout.addToRegion(depButton, 'lt');
 
 	var content = new Element('div', {html: slab.load('dependencies')()}).getChildren()[0];
 	depPopover = new Popover(content, {toggle: depButton});

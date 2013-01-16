@@ -8,7 +8,7 @@ var events = require('./../../lib/events'),
 	behaviourEditor = require('./../editors/behaviour'),
 	result = require('./../result');
 
-var regions = [], curLayout = null, body, cells,
+var regions = {}, curLayout = null, body, cells,
 	widths = [], heights = [];
 
 /**
@@ -26,7 +26,10 @@ function build(){
 		new Cell(body),
 		new Cell(body)
 	];
-	regions = $$('.rgn');
+
+	$$('.rgn').forEach(function(el){
+		regions[el.get('data-name')] = el;
+	});
 
 	$$(cells.map(function(cell){
 		return cell.getOuter();
@@ -36,8 +39,7 @@ function build(){
 		console.warn('No layouts found!');
 	}
 
-	addToRegion(new Element('span.icn50.icn-logo'), 0);
-	addToRegion(new Element('span.icn50.icn-info'), 3);
+	addToRegion(new Element('span.icn42.icn-logo'), 'tl');
 
 	activate(0, false);
 	events.emit('layout.build');
@@ -150,18 +152,18 @@ function resize(){
 /**
  * Add a node to a region
  * @param {Element} el Node to add
- * @param {Integer} index Region index to add to
+ * @param {String} pos Region to add the node to
  */
-function addToRegion(el, index){
-	if (typeOf(el) !== 'element' || typeOf(index) !== 'number') {
+function addToRegion(el, pos){
+	if (typeOf(el) !== 'element' || typeOf(pos) !== 'string') {
 		return;
 	}
-	if (index < 0 || index >= regions.length) {
-		console.warn('Invalid region index: ', index);
+	if (!regions[pos]){
+		console.warn('Invalid region: ', pos);
 		return;
 	}
 
-	el.inject(regions[index]);
+	el.inject(regions[pos]);
 }
 
 /**
