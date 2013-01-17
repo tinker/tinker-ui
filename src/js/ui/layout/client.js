@@ -113,6 +113,33 @@ function reflow(animate){
 }
 
 /**
+ * Calculate intersections between elements and creates handles
+ */
+function createHandles(){
+	var layout = config.layouts[curLayout], i = 0, c, coords;
+
+	for (; i < layout.cells.length; i++){
+		c = layout.cells[i];
+		if (c[0] > 0 && c[0] < layout.cols.length){
+			coords = cellCoords(c);
+			new Element('div.handle.handle-vert').setStyles({
+				top: coords.y1,
+				left: coords.x1,
+				height: coords.y2 - coords.y1
+			}).inject(body);
+		}
+		if (c[1] > 0 && c[1] < layout.rows.length){
+			coords = cellCoords(c);
+			new Element('div.handle.handle-horz').setStyles({
+				top: coords.y1,
+				left: coords.x1,
+				width: coords.x2 - coords.x1
+			}).inject(body);
+		}
+	}
+}
+
+/**
  * Calculate coords of a cell
  * @param {Object} spec Specification of how the cell should look
  * @return {Object} Coordinates
@@ -179,6 +206,7 @@ function activate(index, animate){
 	curLayout = index;
 	recalc();
 	reflow(animate);
+	createHandles();
 }
 
 events.on('layout.init', build);
