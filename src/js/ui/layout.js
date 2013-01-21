@@ -37,7 +37,6 @@ module.exports = new Class({
 	 * Deactivate this layout
 	 */
 	deactivate: function(){
-		console.log('deactivate this layout');
 		window.removeEvent('resize', this.bound.resize);
 		this.active = false;
 	},

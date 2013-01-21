@@ -23,6 +23,9 @@ function activate(index, animate){
 	if (typeOf(index) !== 'number') throw new Error('Layout index has to be an integer');
 	if (!layouts[index]) return false;
 
+	if (curLayout){
+		layouts[curLayout].deactivate();
+	}
 	curLayout = index;
 	layouts[index].activate(animate);
 	return true;
