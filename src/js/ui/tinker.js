@@ -1,7 +1,7 @@
 'use strict';
 
 var events = require('./../lib/events'),
-	layout = require('./layout/client'),
+	layout = require('./layouts/init'),
 	tinker = require('./../lib/tinker');
 
 /**

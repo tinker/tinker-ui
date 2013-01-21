@@ -2,9 +2,10 @@
 
 var events = require('./lib/events'),
 	config = require('./lib/config'),
-	plugins = require('./lib/plugins');
+	plugins = require('./lib/plugins'),
+	layouts = require('./lib/layouts');
 
-require('./ui/layout/init');
+require('./ui/layouts/init');
 
 /**
  * Merge passed config and init the app
@@ -16,8 +17,12 @@ function init(cfg) {
 	events.emit('init');
 }
 
+/**
+ * Public interface
+ */
 window.Tinker = {
 	init: init,
-	registerPlugin: plugins.register
+	layouts: layouts,
+	plugins: plugins
 };
 

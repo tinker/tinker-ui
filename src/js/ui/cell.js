@@ -13,6 +13,7 @@ var Cell = new Class({
 		this.outer = new Element('section.cell#cell'+this.index);
 		this.inner = new Element('div.cell-inner').inject(this.outer);
 		this.outer.inject(this.wrapper);
+		this.outer.set('morph', {duration: 150});
 	},
 
 	/**
