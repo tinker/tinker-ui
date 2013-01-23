@@ -1,6 +1,6 @@
 'use strict';
 
-require('./../dependencies');
 require('./../meta');
+require('./../dependencies');
 require('./../tinker');
 
