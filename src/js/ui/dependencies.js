@@ -4,36 +4,36 @@ var events = require('./../lib/events'),
 	layout = require('./layouts/init'),
 	tinker = require('./../lib/tinker'),
 	dependency = require('./../lib/dependencies'),
-	Popover = require('./popover'),
+	Drawer = require('./drawer'),
 	util = require('./../lib/utils');
 
-var dependencies = {}, depButton, depPopover,
-	depSelect, depUrl, depList, depData;
+var dependencies = {}, button,
+	drawer, select, url, list, data;
 
 /**
  * Build up required modules
  */
 function build(){
-	depButton = new Element('span.icn42.icn-dependencies', {
+	button = new Element('span.icn42.icn-dependencies', {
 		events: { click: dependencyClick }
 	});
-	layout.addToRegion(depButton, 'lt');
+	layout.addToRegion(button, 'lt');
 
-	var content = new Element('div', {html: slab.load('dependencies')()}).getChildren()[0];
-	depPopover = new Popover(content, {toggle: depButton});
+	var content = new Element('div', { html: slab.load('dependencies')() }).getChildren()[0];
+	drawer = new Drawer(content).hide(true);
 
-	depSelect = content.getElement('#dependency-select');
-	depUrl = content.getElement('#dependency-url');
-	depList = content.getElement('#dependency-list');
-	depData = util.parseData('dependency-data');
-	if (!depData){
-		depSelect.getParent('li').destroy();
+	select = content.getElement('#dependency-select');
+	url = content.getElement('#dependency-url');
+	list = content.getElement('#dependency-list');
+	data = util.parseData('dependency-data');
+	if (!data){
+		select.getParent('li').destroy();
 	}
-	if (depSelect && depData){
-		var firstOption = depSelect.getElement('option'),
+	if (select && data){
+		var firstOption = select.getElement('option'),
 			i = 0, j, x = 0, dep, group, version;
-		for (; i < depData.length; i++){
-			dep = depData[i];
+		for (; i < data.length; i++){
+			dep = data[i];
 			if (dep.versions && dep.versions.length){
 				group = new Element('optgroup', {label: dep.name});
 				for (j = 0; j < dep.versions.length; j++, x++){
@@ -44,11 +44,11 @@ function build(){
 					}).inject(group);
 					dependencies[x] = version;
 				}
-				group.inject(depSelect);
+				group.inject(select);
 			}
 		}
-		depSelect.addEvent('change', function(){
-			var index = depSelect.getElement(':selected').get('value'),
+		select.addEvent('change', function(){
+			var index = select.getElement(':selected').get('value'),
 				dep = dependencies[index];
 			if (dep && dep.href && dep.href.length){
 				for (i = 0; i < dep.href.length; i++){
@@ -59,20 +59,20 @@ function build(){
 		});
 	}
 
-	if (depUrl) {
-		depUrl.addEvent('keydown', function(e){
+	if (url) {
+		url.addEvent('keydown', function(e){
 			if (e.key !== 'enter') return;
 
 			e.preventDefault();
-			var href = depUrl.get('value').trim();
-			depUrl.set('value', '');
+			var href = url.get('value').trim();
+			url.set('value', '');
 
 			if (href === '') return;
 			dependency.add(href);
 		});
 	}
 
-	depList.addEvent('click:relay(.remove)', function(e){
+	list.addEvent('click:relay(.remove)', function(e){
 		var li = e.target.getParent('li'),
 			href = li.getElement('.href').get('value');
 		dependency.remove(href);
@@ -87,25 +87,25 @@ function build(){
 }
 
 /**
- * Handle click on assets button
+ * Handle click on dependency button
  */
 function dependencyClick(e){
 	e.preventDefault();
-	depPopover.toggle();
+	drawer.toggle();
 }
 
 /**
  * Render the list of dependencies
  */
 function renderList(){
-	depList.empty();
+	list.empty();
 	var deps = dependency.list(), i = 0, href, name, data, li;
 	for (; i < deps.length; i++){
 		href = deps[i];
 		name = href.match(/([^\/]+)$/)[1];
 		data = {name: name, href: href};
 		li = new Element('ul', {html: slab.load('dependency')(data)}).getChildren()[0];
-		li.inject(depList);
+		li.inject(list);
 	}
 }
 

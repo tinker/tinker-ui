@@ -1,5 +1,6 @@
 {slab dependencies}
 <fieldset>
+	<h3>Dependencies</h3>
 	<ul>
 		<li>
 			<select id="dependency-select">
