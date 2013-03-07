@@ -1,10 +1,13 @@
 {slab meta}
 <fieldset>
+	<h3>Metadata</h3>
 	<ul>
 		<li>
+			<label>Title</label>
 			<input id="meta-title" name="tinker[meta][title]"{if title !== ''} value="{title}"{end}>
 		</li>
 		<li>
+			<label>Description</label>
 			<textarea id="meta-description" name="tinker[meta][description]">{description}</textarea>
 		</li>
 	</ul>

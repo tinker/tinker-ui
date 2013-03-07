@@ -3,18 +3,18 @@
 var events = require('./../lib/events'),
 	layout = require('./layouts/init'),
 	tinker = require('./../lib/tinker'),
-	Popover = require('./popover');
+	Drawer = require('./drawer');
 
-var metaButton, metaPopover, metaTitle, metaDescription;
+var button, drawer, metaTitle, metaDescription;
 
 /**
  * Build up required elements
  */
 function build(){
-	metaButton = new Element('span.icn42.icn-meta', {
+	button = new Element('span.icn42.icn-meta', {
 		events: { click: metaClick }
 	});
-	layout.addToRegion(metaButton, 'lt');
+	layout.addToRegion(button, 'lt');
 
 	var data = {
 		title: tinker.get('meta.title') || '',
@@ -22,7 +22,7 @@ function build(){
 	};
 
 	var content = new Element('div', {html: slab.load('meta')(data)}).getChildren()[0];
-	metaPopover = new Popover(content, {toggle: metaButton});
+	drawer = new Drawer(content).hide(true);
 	metaTitle = content.getElement('#meta-title');
 	metaDescription = content.getElement('#meta-description');
 }
@@ -40,7 +40,7 @@ function update(){
  */
 function metaClick(e){
 	e.preventDefault();
-	metaPopover.toggle();
+	drawer.toggle();
 }
 
 events.on('layout.build', build);
