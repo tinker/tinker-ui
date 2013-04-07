@@ -14,7 +14,7 @@ var dependencies = {}, button,
  * Build up required modules
  */
 function build(){
-	button = new Element('span.icn42.icn-dependencies', {
+	button = new Element('button.icn42.icn-dependencies', {
 		events: { click: dependencyClick }
 	});
 	layout.addToRegion(button, 'lt');

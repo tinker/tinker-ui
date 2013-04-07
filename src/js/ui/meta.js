@@ -11,7 +11,7 @@ var button, drawer, metaTitle, metaDescription;
  * Build up required elements
  */
 function build(){
-	button = new Element('span.icn42.icn-meta', {
+	button = new Element('button.icn42.icn-meta', {
 		events: { click: metaClick }
 	});
 	layout.addToRegion(button, 'lt');

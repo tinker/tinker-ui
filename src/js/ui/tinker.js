@@ -11,10 +11,10 @@ function build(){
 	layout.addToRegion(new Element('a.icn42.icn-new[href=#new]', {
 		events: { click: newClick }
 	}), 'tl');
-	layout.addToRegion(new Element('span.icn42.icn-run', {
+	layout.addToRegion(new Element('button.icn42.icn-run', {
 		events: { click: runClick }
 	}), 'tl');
-	layout.addToRegion(new Element('span.icn42.icn-save', {
+	layout.addToRegion(new Element('button.icn42.icn-save', {
 		events: { click: saveClick }
 	}), 'tl');
 }
