@@ -3,9 +3,10 @@
 var events = require('./../../lib/events'),
 	config = require('./../../lib/config'),
 	layouts = require('./../../lib/layouts'),
+	cells = require('./cells'),
 	Cell = require('./../cell');
 
-var layout, body, cells, regions = [];
+var layout, body, regions = [];
 
 function init(){
 	layout = config.layout === 'embed' ? 'embed' : 'client';
@@ -18,16 +19,14 @@ function init(){
 	);
 
 	body = $('body');
-	cells = [
-		new Cell(body),
-		new Cell(body),
-		new Cell(body),
-		new Cell(body)
-	];
+
+	var i;
+	for (i = 0; i < 4; i++){
+		cells.push(new Cell(body));
+	}
 
 	/* TODO: fix this ugly hack */
 	config.body = body;
-	config.cells = cells;
 
 	$$('.rgn').forEach(function(el){
 		regions[el.get('data-name')] = el;

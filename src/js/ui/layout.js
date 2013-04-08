@@ -1,6 +1,7 @@
 'use strict';
 
-var config = require('./../lib/config');
+var config = require('./../lib/config'),
+	cells = require('./layouts/cells');
 
 module.exports = new Class({
 	active: false,
@@ -22,13 +23,14 @@ module.exports = new Class({
 	 */
 	activate: function(animate){
 		this.active = true;
+
 		/* TODO: fix this ugly hack */
 		this.parent = config.body;
-		this.cells = config.cells;
+
 		this.calculateGrid();
 		this.reflowCells(animate);
-		// create handles
-		// draw handles on grid
+		// TODO: create handles
+		// TODO: draw handles on grid
 
 		window.addEvent('resize', this.bound.resize);
 	},
@@ -89,7 +91,7 @@ module.exports = new Class({
 				width: coords.x2 - coords.x1,
 				height: coords.y2 - coords.y1
 			};
-			this.cells[i].getOuter()[method](styles);
+			cells[i].getOuter()[method](styles);
 		}
 	},
 
