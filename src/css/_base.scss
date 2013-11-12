@@ -1,0 +1,33 @@
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body, .app {
+	height: 100%;
+	overflow: hidden;
+}
+
+.header {
+	height: 36px;
+	background: #666;
+}
+
+.sidebar {
+	position: absolute;
+	top: 36px;
+	bottom: 0;
+	left: 0;
+	width: 36px;
+	background: #eee;
+}
+
+.body {
+	position: absolute;
+	top: 42px;
+	right: 6px;
+	bottom: 6px;
+	left: 42px;
+}
+

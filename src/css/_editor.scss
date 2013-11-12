@@ -1,0 +1,43 @@
+.editor {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #fff;
+	border: 1px solid #ccc;
+	font: 14px 'bitstream vera sans mono', menlo, monospace;
+
+	textarea {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border: 0;
+		font: inherit;
+		resize: none;
+		&:focus {
+			outline: 0;
+		}
+	}
+
+	.active-line {
+		background: #eee;
+	}
+}
+
+// .CodeMirror {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	bottom: 0;
+// 	left: 0;
+// 	z-index: 1;
+// 	height: auto;
+// 	font: inherit;
+// }
+// .CodeMirror-lines {
+// 	padding: 2px 0;
+// }
+

@@ -1,0 +1,19 @@
+{
+	"name": "tinker-ui",
+	"version": "0.0.1-dev",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tinker/tinker-ui.git"
+	},
+	"author": "Chiel Kunkels <chiel@kunkels.me> (@chielkunkels)",
+	"license": "MIT",
+	"dependencies": {
+		"elements": "0.2",
+		"moofx": "3.1",
+		"prime": "0.3"
+	},
+	"devDependencies": {
+		"wrapup": "0.12",
+		"node-sass": "0.7"
+	}
+}
