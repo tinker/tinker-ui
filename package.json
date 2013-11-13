@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"elements": "0.2",
-		"moofx": "3.1",
+		"moofx": "3.2",
 		"prime": "0.3"
 	},
 	"devDependencies": {
