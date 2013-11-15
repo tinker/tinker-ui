@@ -3,11 +3,7 @@
 var $ = require('elements'),
 	elements = require('./elements'),
 	Cell = require('./cell'),
-	editors = {
-		markup: require('./editor/markup'),
-		style: require('./editor/style'),
-		behavior: require('./editor/behavior')
-	},
+	editors = require('./editor'),
 	output = require('./output'),
 	layouts = require('./../lib/layouts');
 
