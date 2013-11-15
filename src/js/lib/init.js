@@ -1,11 +1,15 @@
 'use strict';
 
-var ui = require('./../ui');
+var config = require('./config'),
+	ui = require('./../ui');
 
 /**
  * Initialise tinker
+ * @param {Object} options
  */
-var init = function(){
+var init = function(options){
+	config.urls = options.urls || {};
+
 	ui.init();
 };
 

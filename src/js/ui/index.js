@@ -2,10 +2,12 @@
 
 var $ = require('elements');
 require('elements/attributes');
+require('elements/events');
 require('elements/traversal');
 require('moofx');
 
-var elements = require('./elements'),
+var config = require('./../lib/config'),
+	elements = require('./elements'),
 	Cell = require('./cell'),
 	editors = require('./editor'),
 	output = require('./output'),
@@ -15,7 +17,7 @@ var elements = require('./elements'),
  * Initialise the ui
  */
 var init = function(){
-	var template = '<form method="post" action="#" target="sandbox" class="app">'+
+	var template = '<form method="post" action="' + config.urls.sandbox + '" target="sandbox" class="app">'+
 		'<header class="header">'+
 			'<section class="rgn rgn-tl" data-position="tl">'+
 				'<h1 class="icn icn-logo">Tinker</h1>'+
@@ -30,6 +32,7 @@ var init = function(){
 
 	$(document.body).html(template);
 
+	elements.app = $('.app');
 	elements.body = $('.body');
 	elements.regions = {};
 	var regions = $('.rgn'), len = regions.length, i, region;
@@ -49,6 +52,7 @@ var init = function(){
 	output.init(elements.cells[3].inner);
 
 	layouts.init();
+	require('./actions/execute');
 };
 
 module.exports = {
