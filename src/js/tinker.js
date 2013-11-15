@@ -1,9 +1,10 @@
 'use strict';
 
-var layouts = require('./lib/layouts');
+var init = require('./lib/init'),
+	layouts = require('./lib/layouts');
 
 module.exports = {
-	App: require('./lib/app'),
+	init: init,
 	layouts: {
 		activate: layouts.activate,
 		register: layouts.register
