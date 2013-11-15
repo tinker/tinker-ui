@@ -8,7 +8,8 @@ var $ = require('elements'),
 		style: require('./editor/style'),
 		behavior: require('./editor/behavior')
 	},
-	output = require('./output');
+	output = require('./output'),
+	layouts = require('./../lib/layouts');
 
 require('elements/attributes');
 require('elements/traversal');
@@ -51,6 +52,8 @@ var init = function(){
 	editors.style.init(elements.cells[1].inner);
 	editors.behavior.init(elements.cells[2].inner);
 	output.init(elements.cells[3].inner);
+
+	layouts.init();
 };
 
 module.exports = {

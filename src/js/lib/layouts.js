@@ -1,7 +1,6 @@
 'use strict';
 
 var type = require('prime/type'),
-	config = require('./config'),
 	Layout = require('./../ui/layout');
 
 var layouts = [],
@@ -11,10 +10,6 @@ var layouts = [],
  * Initialise
  */
 var init = function(){
-	for (var i = 0, len = config.layouts.length; i < len; i++){
-		layouts.push(new Layout(config.layouts[i]));
-	}
-
 	layouts[0].activate(false);
 	curLayout = 0;
 };
@@ -38,10 +33,11 @@ var activate = function(index, animate){
 };
 
 /**
- *
+ * Register a new layout
+ * @param {Object} spec
  */
-var register = function(){
-	console.log('This functionality hasn\'t been implemented yet');
+var register = function(spec){
+	layouts.push(new Layout(spec));
 };
 
 module.exports = {

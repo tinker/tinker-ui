@@ -1,8 +1,6 @@
 'use strict';
 
-var config = require('./config'),
-	ui = require('./../ui'),
-	layouts = require('./layouts');
+var ui = require('./../ui');
 
 /**
  * Create a new Tinker App
@@ -13,10 +11,7 @@ var App = function(options){
 		return new App(options);
 	}
 
-	config.layouts = options.layouts || [];
-
 	ui.init();
-	layouts.init();
 };
 
 module.exports = App;
