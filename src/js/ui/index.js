@@ -1,34 +1,33 @@
 'use strict';
 
-var $ = require('elements'),
-	elements = require('./elements'),
+var $ = require('elements');
+require('elements/attributes');
+require('elements/traversal');
+require('moofx');
+
+var elements = require('./elements'),
 	Cell = require('./cell'),
 	editors = require('./editor'),
 	output = require('./output'),
 	layouts = require('./../lib/layouts');
 
-require('elements/attributes');
-require('elements/traversal');
-require('moofx');
-
-var template = '<form method="post" action="#" target="sandbox" class="app">'+
-	'<header class="header">'+
-		'<section class="rgn rgn-tl" data-position="tl">'+
-			'<h1 class="icn icn-logo">Tinker</h1>'+
-			'<button class="icn icn-run">Run</button>'+
-		'</section>'+
-	'</header>'+
-	'<section class="sidebar">'+
-		'<section class="rgn rgn-lt" data-position="lb">'+
-		'</section>'+
-	'</section>'+
-	'<section class="body"></section>'+
-'</form>';
-
 /**
  * Initialise the ui
  */
 var init = function(){
+	var template = '<form method="post" action="#" target="sandbox" class="app">'+
+		'<header class="header">'+
+			'<section class="rgn rgn-tl" data-position="tl">'+
+				'<h1 class="icn icn-logo">Tinker</h1>'+
+			'</section>'+
+		'</header>'+
+		'<section class="sidebar">'+
+			'<section class="rgn rgn-lt" data-position="lb">'+
+			'</section>'+
+		'</section>'+
+		'<section class="body"></section>'+
+	'</form>';
+
 	$(document.body).html(template);
 
 	elements.body = $('.body');
