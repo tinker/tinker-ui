@@ -82,13 +82,27 @@ Layout.prototype.reflowCells = function(animate){
 		method = animate === false ? 'style' : 'animate';
 
 	for (i = 0; i < this.spec.cells.length; i++){
-		coords = this.getCellCoords(this.spec.cells[i]);
-		styles = {
-			top: coords.y1,
-			left: coords.x1,
-			width: coords.x2 - coords.x1,
-			height: coords.y2 - coords.y1
-		};
+		if (!this.spec.cells[i]){
+			elements.cells[i].hidden = true;
+			styles = {
+				opacity: 0
+			};
+		} else {
+			coords = this.getCellCoords(this.spec.cells[i]);
+			styles = {
+				top: coords.y1,
+				left: coords.x1,
+				width: coords.x2 - coords.x1,
+				height: coords.y2 - coords.y1
+			};
+			if (elements.cells[i].hidden){
+				elements.cells[i].hidden = false;
+				elements.cells[i].outer.style(styles);
+				styles = {
+					opacity: 1
+				};
+			}
+		}
 		elements.cells[i].outer[method](styles);
 	}
 };
