@@ -1,11 +1,14 @@
 'use strict';
 
-var mixIn = require('prime/object/mixIn');
+var mixIn = require('prime/object/mixIn'),
+	base = require('./base');
+require('./syntax/css');
 
-module.exports = mixIn({}, require('./base'), {
+module.exports = mixIn({}, base, {
 	type: 'style',
-	modes: {
-		'css': 'text/css'
-	}
+	modes: [{
+		name: 'css',
+		mime: 'text/css'
+	}]
 });
 

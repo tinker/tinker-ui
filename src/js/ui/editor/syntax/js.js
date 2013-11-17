@@ -1,0 +1,1 @@
+../../../../../vendor/CodeMirror/mode/javascript/javascript.js

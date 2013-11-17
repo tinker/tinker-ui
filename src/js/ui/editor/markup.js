@@ -1,11 +1,14 @@
 'use strict';
 
-var mixIn = require('prime/object/mixIn');
+var mixIn = require('prime/object/mixIn'),
+	base = require('./base');
+require('./syntax/xml');
 
-module.exports = mixIn({}, require('./base'), {
+module.exports = mixIn({}, base, {
 	type: 'markup',
-	modes: {
-		'html': 'text/html'
-	}
+	modes: [{
+		name: 'html',
+		mime: 'text/html'
+	}]
 });
 
