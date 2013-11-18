@@ -6,9 +6,9 @@ require('./syntax/css');
 
 module.exports = mixIn({}, base, {
 	type: 'style',
-	modes: [{
-		name: 'css',
-		mime: 'text/css'
-	}]
+	modes: {
+		css: 'text/css'
+	},
+	defaultMode: 'css'
 });
 

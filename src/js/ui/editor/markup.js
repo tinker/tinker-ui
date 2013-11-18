@@ -6,9 +6,9 @@ require('./syntax/xml');
 
 module.exports = mixIn({}, base, {
 	type: 'markup',
-	modes: [{
-		name: 'html',
-		mime: 'text/html'
-	}]
+	modes: {
+		html: 'text/html'
+	},
+	defaultMode: 'html'
 });
 

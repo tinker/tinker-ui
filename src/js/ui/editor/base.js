@@ -1,6 +1,7 @@
 'use strict';
 
 var mixIn = require('prime/object/mixIn'),
+	forOwn = require('prime/object/forOwn'),
 	base64 = require('./../../lib/base64');
 require('./codemirror');
 
@@ -20,7 +21,7 @@ module.exports = {
 	 */
 	init: function(parent){
 		this.parent = parent;
-		mixIn(this.mirrorOptions, {mode: this.modes[0].mime});
+		mixIn(this.mirrorOptions, {mode: this.modes[this.defaultMode]});
 		this.build();
 	},
 
@@ -31,9 +32,9 @@ module.exports = {
 		var html = '<div class="editor"><div class="editor-mode">'+
 			'<select name="tinker[' + this.type + '][type]">';
 
-		for (var i = 0; i < this.modes.length; i++){
-			html += '<option value="' + i + '">' + this.modes[i].name + '</option>';
-		}
+		forOwn(this.modes, function(mime, name){
+			html += '<option>' + name + '</option>';
+		});
 
 		html += '</select></div>'+
 			'<input type="hidden" name="tinker[' + this.type + '][body]">'+

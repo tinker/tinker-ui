@@ -6,9 +6,9 @@ require('./syntax/js');
 
 module.exports = mixIn({}, base, {
 	type: 'behavior',
-	modes: [{
-		name: 'js',
-		mime: 'text/javascript'
-	}]
+	modes: {
+		js: 'text/javascript'
+	},
+	defaultMode: 'js'
 });
 
