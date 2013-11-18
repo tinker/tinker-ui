@@ -23,6 +23,7 @@ module.exports = {
 		this.parent = parent;
 		mixIn(this.mirrorOptions, {mode: this.modes[this.defaultMode]});
 		this.build();
+		this.setEvents();
 	},
 
 	/**
@@ -47,6 +48,16 @@ module.exports = {
 			this.textarea[0],
 			this.mirrorOptions
 		);
+	},
+
+	/**
+	 *
+	 */
+	setEvents: function(){
+		this.modeSelect.on('change', function(){
+			this.selectedMode = this.modeSelect.value();
+			this.codemirror.setOption('mode', this.modes[this.selectedMode]);
+		}.bind(this));
 	},
 
 	/**
