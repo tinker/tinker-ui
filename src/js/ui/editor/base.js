@@ -31,7 +31,7 @@ module.exports = {
 	 */
 	build: function(){
 		var html = '<div class="editor"><div class="editor-mode">'+
-			'<select name="tinker[' + this.type + '][type]">';
+			'<select name="tinker[' + this.type + '][mode]">';
 
 		forOwn(this.modes, function(mime, name){
 			html += '<option>' + name + '</option>';
