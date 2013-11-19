@@ -1,0 +1,1 @@
+../../../../../vendor/CodeMirror/addon/edit/closebrackets.js

@@ -1,1 +1,0 @@
-../../../../vendor/CodeMirror/lib/codemirror.js

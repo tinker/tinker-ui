@@ -7,12 +7,13 @@ require('./codemirror');
 
 module.exports = {
 	mirrorOptions: {
-		tabSize: 4,
-		indentUnit: 4,
+		tabSize: 2,
+		indentUnit: 2,
 		indentWithTabs: true,
 		lineNumbers: true,
 		matchBrackets: true,
-		fixedGutter: true
+		autoCloseBrackets: true,
+		autoCloseTags: true
 	},
 
 	/**
