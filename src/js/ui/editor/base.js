@@ -12,8 +12,7 @@ module.exports = {
 		indentWithTabs: true,
 		lineNumbers: true,
 		matchBrackets: true,
-		autoCloseBrackets: true,
-		autoCloseTags: true
+		autoCloseBrackets: true
 	},
 
 	/**

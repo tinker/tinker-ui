@@ -1,1 +1,0 @@
-../../../../../vendor/CodeMirror/addon/edit/closetag.js
