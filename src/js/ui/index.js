@@ -46,12 +46,13 @@ var init = function(){
 		elements.cells.push(new Cell(elements.body));
 	}
 
+	layouts.init();
+
 	editors.markup.init(elements.cells[0].inner);
 	editors.style.init(elements.cells[1].inner);
 	editors.behavior.init(elements.cells[2].inner);
 	output.init(elements.cells[3].inner);
 
-	layouts.init();
 	require('./actions/execute');
 };
 
