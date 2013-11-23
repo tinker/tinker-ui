@@ -18,7 +18,7 @@ var Layout = function(spec){
 	this.index = index++;
 	this.spec = spec;
 	this.bound = {
-		resize: this.resize.bind(this)
+		reflow: function(){ this.reflow(false); }.bind(this)
 	};
 };
 
@@ -28,7 +28,7 @@ var Layout = function(spec){
 Layout.prototype.deactivate = function(){
 	if (!this.active) return;
 	this.active = false;
-	$(window).off('resize', this.bound.resize);
+	$(window).off('resize', this.bound.reflow);
 };
 
 /**
@@ -38,17 +38,17 @@ Layout.prototype.deactivate = function(){
 Layout.prototype.activate = function(animate){
 	if (this.active) return;
 	this.active = true;
-	this.calculateGrid();
-	this.reflowCells(animate);
-	$(window).on('resize', this.bound.resize);
+	this.reflow(animate);
+	$(window).on('resize', this.bound.reflow);
 };
 
 /**
- *
+ * Reflow the layout
+ * @param {Bool} animate
  */
-Layout.prototype.resize = function(){
+Layout.prototype.reflow = function(animate){
 	this.calculateGrid();
-	this.reflowCells(false);
+	this.reflowCells(animate);
 };
 
 /**
