@@ -1,6 +1,7 @@
 'use strict';
 
-var elements = require('./elements');
+var $ = require('elements'),
+	elements = require('./elements');
 
 var index = 0;
 
@@ -16,6 +17,9 @@ var Layout = function(spec){
 	this.active = false;
 	this.index = index++;
 	this.spec = spec;
+	this.bound = {
+		resize: this.resize.bind(this)
+	};
 };
 
 /**
@@ -24,6 +28,7 @@ var Layout = function(spec){
 Layout.prototype.deactivate = function(){
 	if (!this.active) return;
 	this.active = false;
+	$(window).off('resize', this.bound.resize);
 };
 
 /**
@@ -35,6 +40,15 @@ Layout.prototype.activate = function(animate){
 	this.active = true;
 	this.calculateGrid();
 	this.reflowCells(animate);
+	$(window).on('resize', this.bound.resize);
+};
+
+/**
+ *
+ */
+Layout.prototype.resize = function(){
+	this.calculateGrid();
+	this.reflowCells(false);
 };
 
 /**
