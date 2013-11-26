@@ -54,6 +54,7 @@ var init = function(){
 	output.init(elements.cells[3].inner);
 
 	require('./actions/execute');
+	require('./actions/save');
 };
 
 module.exports = {

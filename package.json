@@ -10,7 +10,8 @@
 	"dependencies": {
 		"elements": "0.2",
 		"moofx": "3.2",
-		"prime": "0.3"
+		"prime": "0.3",
+		"agent": "0.0.4"
 	},
 	"devDependencies": {
 		"wrapup": "0.12",
