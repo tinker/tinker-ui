@@ -55,7 +55,7 @@ module.exports = {
 	 */
 	setEvents: function(){
 		this.modeSelect.on('change', function(){
-			this.selectedMode = this.modeSelect.value();
+			this.selectedMode = this.getMode();
 			this.codemirror.setOption('mode', this.modes[this.selectedMode]);
 		}.bind(this));
 	},
@@ -64,7 +64,21 @@ module.exports = {
 	 * Encode the value with base64 for safe form submission
 	 */
 	encode: function(){
-		this.hidden.value(base64.encode(this.codemirror.getValue()));
+		this.hidden.value(base64.encode(this.getValue()));
+	},
+
+	/**
+	 * Get the currently selected mode
+	 */
+	getMode: function(){
+		return this.modeSelect.value();
+	},
+
+	/**
+	 * Get the value of the editor
+	 */
+	getValue: function(){
+		return this.codemirror.getValue();
 	}
 };
 
