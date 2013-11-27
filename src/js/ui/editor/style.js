@@ -7,7 +7,8 @@ require('./syntax/css');
 module.exports = mixIn({}, base, {
 	type: 'style',
 	modes: {
-		css: 'text/css'
+		css: 'text/css',
+		scss: 'text/x-scss'
 	},
 	defaultMode: 'css'
 });
