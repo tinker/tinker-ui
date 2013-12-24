@@ -8,13 +8,13 @@
 	"author": "Chiel Kunkels <chiel@kunkels.me> (@chielkunkels)",
 	"license": "MIT",
 	"dependencies": {
+		"agent": "0.0.4",
 		"elements": "0.2",
 		"moofx": "3.2",
-		"prime": "0.3",
-		"agent": "0.0.4"
+		"prime": "0.3"
 	},
 	"devDependencies": {
-		"wrapup": "0.12",
-		"node-sass": "0.7"
+		"node-sass": "0.7",
+		"wrapup": "0.12"
 	}
 }
