@@ -1,7 +1,7 @@
 'use strict';
 
-var mixIn = require('prime/object/mixIn'),
-	forOwn = require('prime/object/forOwn'),
+var mixIn = require('mout/object/mixIn'),
+	forOwn = require('mout/object/forOwn'),
 	base64 = require('./../../lib/base64');
 require('./codemirror');
 

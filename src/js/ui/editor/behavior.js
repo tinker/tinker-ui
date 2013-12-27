@@ -1,6 +1,6 @@
 'use strict';
 
-var mixIn = require('prime/object/mixIn'),
+var mixIn = require('mout/object/mixIn'),
 	base = require('./base');
 require('./syntax/js');
 

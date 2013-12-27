@@ -1,6 +1,6 @@
 'use strict';
 
-var type = require('prime/type'),
+var isNumber = require('mout/lang/isNumber'),
 	Layout = require('./../ui/layout');
 
 var layouts = [],
@@ -20,7 +20,7 @@ var init = function(){
  * @param {Bool} animate
  */
 var activate = function(index, animate){
-	if (type(index) !== 'number') throw new Error('Layout index has to be an integer');
+	if (!isNumber(index)) throw new Error('Layout index has to be an integer');
 	index = parseInt(index, 10);
 	if (!layouts[index]) return false;
 

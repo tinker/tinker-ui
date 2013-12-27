@@ -1,7 +1,7 @@
 'use strict';
 
 var zen = require('elements/zen'),
-	forOwn = require('prime/object/forOwn'),
+	forOwn = require('mout/object/forOwn'),
 	elements = require('./../elements'),
 	editors = require('./../editor');
 

@@ -11,7 +11,7 @@
 		"agent": "0.0.4",
 		"elements": "0.2",
 		"moofx": "3.2",
-		"prime": "0.3"
+		"mout": "0.8"
 	},
 	"devDependencies": {
 		"node-sass": "0.7",
