@@ -68,10 +68,29 @@ module.exports = {
 	},
 
 	/**
+	 * Set the mode of the editor
+	 * @param {String} value
+	 */
+	setMode: function(value){
+		if (!this.modes[value]) return false;
+
+		this.modeSelect.value(value);
+		this.codemirror.setOption('mode', this.modes[value]);
+	},
+
+	/**
 	 * Get the currently selected mode
 	 */
 	getMode: function(){
 		return this.modeSelect.value();
+	},
+
+	/**
+	 * Set value of the editor
+	 * @param {String} value
+	 */
+	setValue: function(value){
+		this.codemirror.setValue(value);
 	},
 
 	/**
