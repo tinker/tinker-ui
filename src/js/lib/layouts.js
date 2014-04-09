@@ -37,6 +37,9 @@ var activate = function(index, animate){
  * @param {Object} spec
  */
 var register = function(spec){
+	if (!spec.cols || !spec.rows || !spec.cells){
+		throw new Error('Incorrect spec format');
+	}
 	layouts.push(new Layout(spec));
 };
 
