@@ -45,4 +45,3 @@ module.exports = {
 	activate: activate,
 	register: register
 };
-

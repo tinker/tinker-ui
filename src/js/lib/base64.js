@@ -199,4 +199,3 @@ var encode = function(input){
 module.exports = {
 	encode: encode
 };
-

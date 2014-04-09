@@ -15,4 +15,3 @@ zen('button.icn.icn-execute')
 	});
 
 module.exports = execute;
-

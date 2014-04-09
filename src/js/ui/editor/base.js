@@ -101,4 +101,3 @@ module.exports = {
 		return this.codemirror.getValue();
 	}
 };
-

@@ -11,4 +11,3 @@ module.exports = mixIn({}, base, {
 	},
 	defaultMode: 'html'
 });
-

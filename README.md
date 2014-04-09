@@ -23,4 +23,3 @@ javascript and css and will compile when something changes.
 ```
 $ bin/watch
 ```
-

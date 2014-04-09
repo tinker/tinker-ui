@@ -29,4 +29,3 @@ Cell.prototype.build = function(){
 };
 
 module.exports = Cell;
-

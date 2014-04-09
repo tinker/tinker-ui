@@ -12,4 +12,3 @@ module.exports = mixIn({}, base, {
 	},
 	defaultMode: 'css'
 });
-

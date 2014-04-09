@@ -122,4 +122,3 @@ Layout.prototype.reflowCells = function(animate){
 };
 
 module.exports = Layout;
-

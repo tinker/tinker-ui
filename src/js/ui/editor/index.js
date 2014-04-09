@@ -5,4 +5,3 @@ module.exports = {
 	style: require('./style'),
 	behavior: require('./behavior')
 };
-

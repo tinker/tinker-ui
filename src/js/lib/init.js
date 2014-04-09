@@ -14,4 +14,3 @@ var init = function(options){
 };
 
 module.exports = init;
-

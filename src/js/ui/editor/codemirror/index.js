@@ -6,4 +6,3 @@ require('./codemirror');
 require('./active-line');
 require('./closebrackets');
 require('./matchbrackets');
-

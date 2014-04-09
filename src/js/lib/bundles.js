@@ -28,4 +28,3 @@ var load = function(bundle){
 module.exports = {
 	load: load
 };
-

@@ -14,4 +14,3 @@ module.exports = {
 		register: layouts.register
 	}
 };
-
