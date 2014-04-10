@@ -23,10 +23,6 @@ var init = function(){
 				'<h1 class="icn icn-logo">Tinker</h1>'+
 			'</section>'+
 		'</header>'+
-		'<section class="sidebar">'+
-			'<section class="rgn rgn-lt" data-position="lb">'+
-			'</section>'+
-		'</section>'+
 		'<section class="body"></section>'+
 	'</form>';
 
