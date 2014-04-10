@@ -14,7 +14,10 @@
 		"mout": "0.8"
 	},
 	"devDependencies": {
-		"node-sass": "0.7",
-		"wrapup": "0.12"
+		"grunt": "~0.4.2",
+		"grunt-contrib-watch": "0.5",
+		"grunt-mkdir": "0.1",
+		"grunt-sass": "0.9",
+		"grunt-wrapup": "0.1.0"
 	}
 }
