@@ -14,8 +14,10 @@ zen('button.icn.icn-save')
 	.insert(elements.regions.tl)
 	.on('click', function(e){
 		e.preventDefault();
-		execute();
 		var bundle = {
+			meta: {
+				hash: bundles.getHash()
+			},
 			code: {
 				markup: {
 					mode: editors.markup.getMode(),
@@ -31,5 +33,6 @@ zen('button.icn.icn-save')
 				},
 			}
 		};
+		execute();
 		save(bundle);
 	});

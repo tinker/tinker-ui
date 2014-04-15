@@ -8,7 +8,8 @@ var agent = require('agent'),
  * @param {Object} bundle
  */
 var save = function(bundle){
-	var req = agent('post', config.urls.api + '/bundles');
+	var urlHash = bundle.meta.hash ? '/' + bundle.meta.hash : '',
+		req = agent('post', config.urls.api + '/bundles' + urlHash);
 	req.data(JSON.stringify(bundle));
 	req.header('content-type', 'application/json');
 
@@ -18,7 +19,8 @@ var save = function(bundle){
 			return;
 		}
 
-		console.log(response.body);
+		var meta = response.body.meta;
+		window.history.pushState(null, '', '/' + meta.hash + '/' + meta.revision + '/');
 	});
 };
 
