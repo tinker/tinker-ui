@@ -33,5 +33,3 @@ zen('button.icn.icn-save')
 		};
 		save(bundle);
 	});
-
-module.exports = save;
