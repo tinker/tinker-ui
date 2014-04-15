@@ -1,7 +1,7 @@
 'use strict';
 
 var config = require('./config'),
-	ui = require('./../ui');
+	ui = require('../ui');
 
 /**
  * Initialise tinker

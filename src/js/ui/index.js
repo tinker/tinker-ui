@@ -6,12 +6,12 @@ require('elements/events');
 require('elements/traversal');
 require('moofx');
 
-var config = require('./../lib/config'),
+var config = require('../lib/config'),
 	elements = require('./elements'),
 	Cell = require('./cell'),
 	editors = require('./editor'),
 	output = require('./output'),
-	layouts = require('./../lib/layouts');
+	layouts = require('../lib/layouts');
 
 /**
  * Initialise the ui

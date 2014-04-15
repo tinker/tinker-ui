@@ -1,8 +1,8 @@
 'use strict';
 
 var zen = require('elements/zen'),
-	elements = require('./../elements'),
-	execute = require('./../../lib/actions/execute');
+	elements = require('../elements'),
+	execute = require('../../lib/actions/execute');
 
 require('elements/events');
 

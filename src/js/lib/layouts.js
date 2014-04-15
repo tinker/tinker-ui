@@ -1,7 +1,7 @@
 'use strict';
 
 var isNumber = require('mout/lang/isNumber'),
-	Layout = require('./../ui/layout');
+	Layout = require('../ui/layout');
 
 var layouts = [],
 	curLayout = -1;

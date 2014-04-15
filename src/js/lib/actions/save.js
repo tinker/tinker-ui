@@ -1,7 +1,7 @@
 'use strict';
 
 var agent = require('agent'),
-	config = require('./../config');
+	config = require('../config');
 
 /**
  * Execute the user's current code

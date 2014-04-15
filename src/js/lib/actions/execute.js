@@ -1,8 +1,8 @@
 'use strict';
 
 var forOwn = require('mout/object/forOwn'),
-	editors = require('./../../ui/editor'),
-	elements = require('./../../ui/elements');
+	editors = require('../../ui/editor'),
+	elements = require('../../ui/elements');
 
 /**
  *

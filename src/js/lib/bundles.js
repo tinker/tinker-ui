@@ -1,7 +1,7 @@
 'use strict';
 
 var isObject = require('mout/lang/isObject'),
-	editors = require('./../ui/editor'),
+	editors = require('../ui/editor'),
 	execute = require('./actions/execute');
 
 var types = ['markup', 'style', 'behavior'];

@@ -1,10 +1,11 @@
 'use strict';
 
 var zen = require('elements/zen'),
-	elements = require('./../elements'),
-	editors = require('./../../ui/editor'),
-	execute = require('./execute'),
-	save = require('./../../lib/actions/save');
+	bundles = require('../../lib/bundles'),
+	elements = require('../elements'),
+	editors = require('../../ui/editor'),
+	execute = require('../../lib/actions/execute'),
+	save = require('../../lib/actions/save');
 
 require('elements/events');
 
