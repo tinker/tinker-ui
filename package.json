@@ -8,10 +8,10 @@
 	"author": "Chiel Kunkels <chiel@kunkels.me> (@chielkunkels)",
 	"license": "MIT",
 	"dependencies": {
-		"agent": "0.0.4",
+		"agent": "0.1",
 		"elements": "0.2",
 		"moofx": "3.2",
-		"mout": "0.8"
+		"mout": "0.9"
 	},
 	"devDependencies": {
 		"grunt": "~0.4.2",
