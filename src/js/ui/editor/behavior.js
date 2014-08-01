@@ -9,7 +9,7 @@ module.exports = mixIn({}, base, {
 	type: 'behavior',
 	modes: {
 		js: 'text/javascript',
-		coffeescript: 'text/x-coffeescript'
+		coffee: 'text/x-coffeescript'
 	},
 	defaultMode: 'js'
 });
