@@ -44,7 +44,15 @@ var getHash = function(){
 	return hash;
 };
 
+/**
+ * Set the hash for the current bundle
+ */
+var setHash = function(newHash){
+	hash = newHash;
+};
+
 module.exports = {
 	load: load,
-	getHash: getHash
+	getHash: getHash,
+	setHash: setHash
 };

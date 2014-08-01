@@ -1,6 +1,7 @@
 'use strict';
 
 var agent = require('agent'),
+	bundles = require('../bundles'),
 	config = require('../config');
 
 /**
@@ -20,6 +21,7 @@ var save = function(bundle){
 		}
 
 		var meta = response.body.meta;
+		bundles.setHash(meta.hash);
 		window.history.pushState(null, '', '/' + meta.hash + '/' + meta.revision + '/');
 	});
 };
